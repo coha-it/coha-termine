@@ -122,7 +122,8 @@ import axios from "axios";
   export default {
     data: () => ({
       focus: '2019-11-08',
-      today: '2019-11-08',
+      // today: '2019-11-08',
+      today: new Date(),
       type: 'month',
       typeToLabel: {
         month: 'Monat',
