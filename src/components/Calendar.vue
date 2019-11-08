@@ -78,7 +78,7 @@
             flat
           >
             <v-toolbar
-              :color="selectedEvent.color"
+              color="secondary"
               dark
             >
               <v-toolbar-title v-html="selectedEvent.name"></v-toolbar-title>
@@ -238,7 +238,8 @@ import axios from "axios";
         this.type = 'day'
       },
       getEventColor (event) {
-        return event.color
+        // return event.color
+        return "secondary"
       },
       setToday () {
         this.focus = this.today
