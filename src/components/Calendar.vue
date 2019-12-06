@@ -49,7 +49,7 @@
           </v-menu>
         </v-toolbar>
       </v-sheet>
-      <v-sheet height="600">
+      <v-sheet height="600" v-if="events">
         <v-calendar
           ref="calendar"
           v-model="focus"
@@ -69,7 +69,6 @@
           v-model="selectedOpen"
           :close-on-content-click="false"
           :activator="selectedElement"
-          full-width
           offset-x
         >
           <v-card
@@ -121,9 +120,9 @@ import axios from "axios";
 
   export default {
     data: () => ({
-      focus: '2019-11-08',
+      focus: new Date().toISOString().substr(0, 10),
       // today: '2019-11-08',
-      today: new Date(),
+      today: new Date().toISOString().substr(0, 10),
       type: 'month',
       typeToLabel: {
         month: 'Monat',
@@ -137,55 +136,7 @@ import axios from "axios";
       selectedElement: null,
       selectedOpen: false,
 
-      events: [{"name":"TOP ENTSCHEIDER SEMINAR mit Lisa Ganster", "color": 'blue', "start":"2019-10-19"}],
-      x_events: [
-        {
-          name: 'Vacation',
-          details: 'Going to the beach! <b>bold</b>',
-          start: '2019-10-29',
-          end: '2019-11-04',
-          color: 'blue',
-        },
-        {
-          name: '30th Birthday',
-          details: 'Celebrate responsibly',
-          start: '2019-11-06',
-          color: 'primary',
-        },
-        {
-          name: 'Hackathon',
-          details: 'Code like there is no tommorrow',
-          start: '2019-11-27 23:00',
-          end: '2019-12-01 08:00',
-          color: 'black',
-        },
-
-        {
-          name: 'Viele Termine!',
-          details: 'Viele Termine!!!!',
-          start: '2019-11-15',
-          color: 'teal',
-        },
-        {
-          name: 'Viele Termine!',
-          details: 'Viele Termine!!!!',
-          start: '2019-11-15',
-          color: 'teal',
-        },
-        {
-          name: 'Viele Termine!',
-          details: 'Viele Termine!!!!',
-          start: '2019-11-15',
-          color: 'teal',
-        },
-        {
-          name: 'Viele Termine!',
-          details: 'Viele Termine!!!!',
-          start: '2019-11-15',
-          color: 'teal',
-        },
-
-      ],
+      events: [],
     }),
     computed: {
       title () {
