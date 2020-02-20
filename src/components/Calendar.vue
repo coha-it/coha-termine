@@ -175,8 +175,12 @@ import axios from "axios";
     },
     mounted () {
       this.$refs.calendar.checkChange();
-
-      axios.get("https://api.corporate-happiness.de/dist/public_events.json").then((response) => {
+      axios.get(
+        'https://api.corporate-happiness.de/dist/public_events.json',
+        {
+          headers: { "x-dsi-restful": 1 }
+        }
+      ).then((response) => {
         this.events = response.data;
       }, (error) => {
         console.log(error);
