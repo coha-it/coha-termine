@@ -177,9 +177,9 @@ import axios from "axios";
       this.$refs.calendar.checkChange();
       axios.get(
         'https://api.corporate-happiness.de/dist/public_events.json',
-        {
+        /*{
           headers: { "x-dsi-restful": 1 }
-        }
+        }*/
       ).then((response) => {
         this.events = response.data;
       }, (error) => {
