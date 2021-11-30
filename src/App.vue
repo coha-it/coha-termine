@@ -1,6 +1,8 @@
 <template>
   <v-app>
+    <v-main>
       <Calendar/>
+    </v-main>
   </v-app>
 </template>
 
