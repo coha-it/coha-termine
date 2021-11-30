@@ -14,9 +14,7 @@
               </v-btn>
               <v-toolbar-title>{{ title }}</v-toolbar-title>
               <v-spacer></v-spacer>
-              <v-icon v-if="type != 'month'" @click="type = 'month'"
-                >mdi-backup-restore</v-icon
-              >
+              <v-icon v-if="type != 'month'" @click="type = 'month'">mdi-backup-restore</v-icon>
               <v-menu bottom right>
                 <template v-slot:activator="{ on }">
                   <v-btn outlined v-on="on">
@@ -106,6 +104,8 @@ import axios from "axios";
 export default {
   name: 'Calendar',
   data: () => ({
+    apiUrl: process?.env?.VUE_APP_API_URL,
+
     focus: new Date().toISOString().substr(0, 10),
     // today: '2019-11-08',
     today: new Date().toISOString().substr(0, 10),
@@ -164,7 +164,7 @@ export default {
     this.$refs.calendar.checkChange();
     axios
       .get(
-        "https://api.corporate-happiness.de/dist/public_events.json"
+        this.apiUrl + '/public_events.json'
         /*{
           headers: { "x-dsi-restful": 1 }
         }*/
@@ -184,9 +184,8 @@ export default {
       this.type = "day";
     },
     getEventColor(event) {
-      console.log('get event color= ', event)
-      // return event.color
-      return "secondary";
+      const color = event?.color
+      return color ? color : 'green'
     },
     setToday() {
       this.focus = this.today;
