@@ -104,8 +104,6 @@ import axios from "axios";
 export default {
   name: 'Calendar',
   data: () => ({
-    apiUrl: process?.env?.VUE_APP_API_URL,
-
     focus: new Date().toISOString().substr(0, 10),
     // today: '2019-11-08',
     today: new Date().toISOString().substr(0, 10),
@@ -164,7 +162,7 @@ export default {
     this.$refs.calendar.checkChange();
     axios
       .get(
-        this.apiUrl + '/public_events.json'
+        process?.env?.VUE_APP_FILENAME
         /*{
           headers: { "x-dsi-restful": 1 }
         }*/
