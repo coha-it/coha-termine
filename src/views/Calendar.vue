@@ -99,10 +99,17 @@
 </template>
 
 <script>
-import axios from "axios";
-
 export default {
+
   name: 'Calendar',
+
+  props: {
+    events: {
+      type: Array,
+      required: true,
+    }
+  },
+
   data: () => ({
     focus: new Date().toISOString().substr(0, 10),
     // today: '2019-11-08',
@@ -119,8 +126,6 @@ export default {
     selectedEvent: {},
     selectedElement: null,
     selectedOpen: false,
-
-    events: [],
   }),
   computed: {
     title() {
@@ -160,21 +165,6 @@ export default {
   },
   mounted() {
     this.$refs.calendar.checkChange();
-    axios
-      .get(
-        process?.env?.VUE_APP_FILENAME
-        /*{
-          headers: { "x-dsi-restful": 1 }
-        }*/
-      )
-      .then(
-        (response) => {
-          this.events = response.data;
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
   },
   methods: {
     viewDay({ date }) {

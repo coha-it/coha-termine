@@ -1,16 +1,13 @@
 <template lang="pug">
 .home
-  Calendar(msg="Welcome to Your Vue.js App")
+  router-link(:to="{name: 'Calendar'}") Kalender
+  router-link(:to="{name: 'Table'}") Tabelle
 </template>
 
 <script>
 // @ is an alias to /src
-import Calendar from '@/components/Calendar.vue'
 
 export default {
   name: 'Home',
-  components: {
-    Calendar
-  }
 }
 </script>

@@ -1,4 +1,4 @@
-# corporate-happiness-calendar
+# corporate-happiness-termine
 
 ## Project setup
 ```

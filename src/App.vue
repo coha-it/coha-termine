@@ -1,21 +1,37 @@
 <template lang="pug">
 v-app
   v-main
-    Calendar
+    router-view(v-if="events" :events="events")
 </template>
 
 <script>
-import Calendar from './components/Calendar';
+import axios from "axios";
 
 export default {
-  name: 'App',
+  name: "App",
 
-  components: {
-    Calendar,
+  data: function() {
+    return {
+      events: null
+    }
   },
-
-  data: () => ({
-    //
-  }),
+  
+  created: function () {
+    axios
+      .get(
+        process?.env?.VUE_APP_FILENAME
+        /*{
+          headers: { "x-dsi-restful": 1 }
+        }*/
+      )
+      .then(
+        (response) => {
+          this.events = response.data;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  },
 };
 </script>
