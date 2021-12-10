@@ -6,7 +6,6 @@ v-app
 
 <script>
 import axios from "axios"
-const csvToJson = require("convert-csv-to-json")
 
 export default {
   name: "App",
@@ -20,10 +19,14 @@ export default {
   methods: {
     convertDate(dateString) {
       //  Convert a "dd.MM.yyyy" string into a Date object
-      if (typeof dateString !== "string") return "";
-      let d = dateString.split(".");
-      let dat = new Date(d[2] + "-" + d[1] + "-" + d[0]);
-      return dat;
+      if (typeof dateString === "string" && dateString != "") {
+        const date_array = dateString.split(".");
+        const month = date_array[1]
+        const year = date_array[2]
+        const day = date_array[0]
+        return new Date(`${year.length > 2 ? year : '20'+year}-${month}-${day}`)
+      }
+      return "";
     },
   },
 
@@ -38,7 +41,7 @@ export default {
     }).then(
       (response) => {
         let data = response.data
-        let json = csvToJson.utf8Encoding().csvStringToJson(data)
+        let json = data
 
         this.events = json.map((event) => {
           console.log(typeof event.start);

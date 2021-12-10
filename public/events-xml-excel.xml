@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Author>Microsoft Office User</Author>
+  <LastAuthor>Microsoft Office User</LastAuthor>
+  <Created>2021-12-10T16:41:34Z</Created>
+  <LastSaved>2021-12-10T16:46:13Z</LastSaved>
+  <Version>16.00</Version>
+ </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>16020</WindowHeight>
+  <WindowWidth>28040</WindowWidth>
+  <WindowTopX>380</WindowTopX>
+  <WindowTopY>500</WindowTopY>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="12" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s62">
+   <NumberFormat ss:Format="Short Date"/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="events">
+  <Table ss:ExpandedColumnCount="6" ss:ExpandedRowCount="6" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="65" ss:DefaultRowHeight="16">
+   <Column ss:Width="244"/>
+   <Column ss:AutoFitWidth="0" ss:Width="106"/>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">name</Data></Cell>
+    <Cell><Data ss:Type="String">start</Data></Cell>
+    <Cell><Data ss:Type="String">end</Data></Cell>
+    <Cell><Data ss:Type="String">article_id</Data></Cell>
+    <Cell><Data ss:Type="String">details</Data></Cell>
+    <Cell><Data ss:Type="String">color</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">Botschafter-Ausbildung in München</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="DateTime">2021-12-21T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="DateTime">2021-12-23T00:00:00.000</Data></Cell>
+    <Cell><Data ss:Type="Number">6</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;p&gt;Ihr persönliches Wachstum führt zum Wachstum der Menschen um Sie herum.&lt;/p&gt;</Data></Cell>
+    <Cell><Data ss:Type="String">primary</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">Botschafter-Ausbildung in Varel (Upstalsboom)</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="DateTime">2021-12-20T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="DateTime">2021-12-22T00:00:00.000</Data></Cell>
+    <Cell><Data ss:Type="Number">7</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;p&gt;Erfahren Sie, wie Sie durch die wissenschaftlichen Erkenntnisse der positiven Psychologie über sich hinaus wachsen können.&lt;/p&gt;</Data></Cell>
+    <Cell><Data ss:Type="String">green</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">WORKSHOP &quot;Das Neue Führen&quot;</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="DateTime">2021-12-20T00:00:00.000</Data></Cell>
+    <Cell ss:Index="4"><Data ss:Type="Number">13</Data></Cell>
+    <Cell ss:Index="6"><Data ss:Type="String">blue</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">KEYNOTE &quot;Inviting statt Recruiting&quot;</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="DateTime">2021-12-25T00:00:00.000</Data></Cell>
+    <Cell ss:Index="4"><Data ss:Type="Number">14</Data></Cell>
+    <Cell ss:Index="6"><Data ss:Type="String">black</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">Test 2</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="DateTime">2021-12-24T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="DateTime">2021-12-25T00:00:00.000</Data></Cell>
+    <Cell><Data ss:Type="Number">7</Data></Cell>
+    <Cell><Data ss:Type="String">Paar Details</Data></Cell>
+    <Cell><Data ss:Type="String">purple</Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <Unsynced/>
+   <Selected/>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>4</ActiveRow>
+     <ActiveCol>2</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>
