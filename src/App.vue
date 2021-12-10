@@ -17,7 +17,7 @@ export default {
   },
 
   methods: {
-    convertDate(dateString) {
+    convertDateGerman(dateString) {
       //  Convert a "dd.MM.yyyy" string into a Date object
       if (typeof dateString === "string" && dateString != "") {
         const date_array = dateString.split(".");
@@ -44,9 +44,8 @@ export default {
         let json = data
 
         this.events = json.map((event) => {
-          console.log(typeof event.start);
-          event.start = this.convertDate(event.start);
-          event.end = this.convertDate(event.end);
+          event.start = new Date(event.start)
+          event.end = new Date(event.end)
           return event;
         });
 

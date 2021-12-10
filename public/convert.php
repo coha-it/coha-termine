@@ -86,14 +86,12 @@ function array_from_worksheet_table($file, $worksheet_name) {
   return false;
 }
 
-
 // Generate Array / Json
-$events = array_from_worksheet_table('events-xml-excel.xml', 'events');
+$events = array_from_worksheet_table('events.xml', 'events');
 $events = array_values($events);
 $json = json_encode($events);
 
 file_put_contents('events.json', $json);
-
 
 // Old Stuff
 
