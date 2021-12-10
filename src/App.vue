@@ -1,9 +1,7 @@
-<template>
-  <v-app>
-    <v-main>
-      <Calendar/>
-    </v-main>
-  </v-app>
+<template lang="pug">
+v-app
+  v-main
+    Calendar
 </template>
 
 <script>
