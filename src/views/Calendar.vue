@@ -71,7 +71,6 @@ export default {
 
   data: () => ({
     focus: new Date().toISOString().substr(0, 10),
-    // today: '2019-11-08',
     today: new Date().toISOString().substr(0, 10),
     type: "month",
     typeToLabel: {
