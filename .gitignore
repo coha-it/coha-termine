@@ -20,4 +20,5 @@ yarn-error.log*
 *.sln
 *.sw?
 
-/public/public_events.json
+/public/upload/storage/*
+!/public/upload/storage/*.example.*
