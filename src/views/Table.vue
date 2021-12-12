@@ -23,5 +23,18 @@ export default {
       required: true,
     },
   },
+
+  data: function () {
+    return {
+      headers: [
+        'name',
+        'start',
+        'end',
+        'details',
+        'color',
+        'article_url',
+      ],
+    };
+  },
 };
 </script>

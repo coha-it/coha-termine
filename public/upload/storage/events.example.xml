@@ -9,7 +9,7 @@
   <Author>Microsoft Office User</Author>
   <LastAuthor>Microsoft Office User</LastAuthor>
   <Created>2021-12-10T16:41:34Z</Created>
-  <LastSaved>2021-12-11T15:11:37Z</LastSaved>
+  <LastSaved>2021-12-12T17:06:57Z</LastSaved>
   <Version>16.00</Version>
  </DocumentProperties>
  <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
@@ -24,9 +24,9 @@
     <SheetIndex>0</SheetIndex>
    </Xct>
   </SupBook>
-  <WindowHeight>15980</WindowHeight>
+  <WindowHeight>16020</WindowHeight>
   <WindowWidth>28040</WindowWidth>
-  <WindowTopX>360</WindowTopX>
+  <WindowTopX>380</WindowTopX>
   <WindowTopY>500</WindowTopY>
   <ProtectStructure>False</ProtectStructure>
   <ProtectWindows>False</ProtectWindows>
@@ -45,106 +45,158 @@
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="3"
      ss:Color="#4472C4"/>
    </Borders>
-   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="15" ss:Color="#44546A"
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="15" ss:Color="#339966"
     ss:Bold="1"/>
   </Style>
-  <Style ss:ID="s66" ss:Name="Hyperlink">
-   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="12" ss:Color="#0563C1"
+  <Style ss:ID="s62" ss:Name="Hyperlink">
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="12" ss:Color="#0066CC"
     ss:Underline="Single"/>
   </Style>
-  <Style ss:ID="s74">
-   <Alignment ss:Vertical="Top"/>
-   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="14" ss:Color="#000000"/>
-   <NumberFormat ss:Format="Short Date"/>
-  </Style>
-  <Style ss:ID="s75">
+  <Style ss:ID="s68">
    <Alignment ss:Vertical="Top"/>
    <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="14" ss:Color="#000000"/>
   </Style>
   <Style ss:ID="s76">
-   <Alignment ss:Vertical="Top"/>
+   <Alignment ss:Horizontal="Left" ss:Vertical="Top" ss:WrapText="1"/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="14" ss:Color="#000000"/>
+   <NumberFormat/>
   </Style>
-  <Style ss:ID="s80">
-   <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+  <Style ss:ID="s141">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Top"/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="14" ss:Color="#000000"/>
+   <NumberFormat ss:Format="Short Date"/>
   </Style>
-  <Style ss:ID="s81" ss:Parent="s66">
-   <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+  <Style ss:ID="s142">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Top" ss:WrapText="1"/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="14" ss:Color="#000000"/>
   </Style>
-  <Style ss:ID="s95" ss:Parent="s22">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
-   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="18" ss:Color="#44546A"
+  <Style ss:ID="s143">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Top"/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="14" ss:Color="#000000"/>
+  </Style>
+  <Style ss:ID="s144" ss:Parent="s62">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Top" ss:WrapText="1"/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="14" ss:Color="#0066CC"
+    ss:Underline="Single"/>
+  </Style>
+  <Style ss:ID="s181" ss:Parent="s22">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center" ss:WrapText="1"/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="12" ss:Color="#3A3838"/>
+   <Interior ss:Color="#D9E1F2" ss:Pattern="Solid"/>
+   <NumberFormat/>
+  </Style>
+  <Style ss:ID="s183" ss:Parent="s22">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center" ss:WrapText="1"/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="12" ss:Color="#3A3838"/>
+   <Interior ss:Color="#D9E1F2" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s184">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="12" ss:Color="#3A3838"/>
+  </Style>
+  <Style ss:ID="s189" ss:Parent="s22">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="16" ss:Color="#000000"
+    ss:Bold="1"/>
+   <Interior ss:Color="#D9E1F2" ss:Pattern="Solid"/>
+   <NumberFormat/>
+  </Style>
+  <Style ss:ID="s190" ss:Parent="s22">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="16" ss:Color="#000000"
     ss:Bold="1"/>
    <Interior ss:Color="#D9E1F2" ss:Pattern="Solid"/>
   </Style>
-  <Style ss:ID="s96" ss:Parent="s22">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>
-   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="18" ss:Color="#44546A"
+  <Style ss:ID="s191" ss:Parent="s22">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="16" ss:Color="#000000"
     ss:Bold="1"/>
    <Interior ss:Color="#D9E1F2" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s192">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="16" ss:Color="#000000"/>
   </Style>
  </Styles>
  <Worksheet ss:Name="events">
-  <Table ss:ExpandedColumnCount="6" ss:ExpandedRowCount="6" x:FullColumns="1"
-   x:FullRows="1" ss:DefaultColumnWidth="65" ss:DefaultRowHeight="16">
+  <Table ss:ExpandedColumnCount="7" ss:ExpandedRowCount="7" x:FullColumns="1"
+   x:FullRows="1" ss:StyleID="s68" ss:DefaultColumnWidth="65"
+   ss:DefaultRowHeight="16">
    <Column ss:StyleID="s76" ss:Width="244"/>
-   <Column ss:StyleID="s76" ss:AutoFitWidth="0" ss:Width="106"/>
-   <Column ss:StyleID="s76" ss:AutoFitWidth="0"/>
-   <Column ss:StyleID="s76" ss:AutoFitWidth="0" ss:Width="230"/>
-   <Column ss:StyleID="s76" ss:AutoFitWidth="0"/>
-   <Column ss:StyleID="s80" ss:AutoFitWidth="0" ss:Width="299"/>
-   <Row ss:AutoFitHeight="0" ss:Height="46">
-    <Cell ss:StyleID="s95"><Data ss:Type="String">name</Data></Cell>
-    <Cell ss:StyleID="s95"><Data ss:Type="String">start</Data></Cell>
-    <Cell ss:StyleID="s95"><Data ss:Type="String">end</Data></Cell>
-    <Cell ss:StyleID="s95"><Data ss:Type="String">details</Data></Cell>
-    <Cell ss:StyleID="s95"><Data ss:Type="String">color</Data></Cell>
-    <Cell ss:StyleID="s96"><Data ss:Type="String">article_url</Data></Cell>
+   <Column ss:StyleID="s143" ss:AutoFitWidth="0" ss:Width="294"/>
+   <Column ss:StyleID="s143" ss:AutoFitWidth="0" ss:Width="106"/>
+   <Column ss:StyleID="s143" ss:AutoFitWidth="0" ss:Width="174"/>
+   <Column ss:StyleID="s143" ss:AutoFitWidth="0" ss:Width="230"/>
+   <Column ss:StyleID="s143" ss:Width="269"/>
+   <Column ss:StyleID="s142" ss:Width="485"/>
+   <Row ss:Height="22" ss:StyleID="s192">
+    <Cell ss:StyleID="s189"><Data ss:Type="String">Name</Data></Cell>
+    <Cell ss:StyleID="s190"><Data ss:Type="String">Ort</Data></Cell>
+    <Cell ss:StyleID="s190"><Data ss:Type="String">Startdatum</Data></Cell>
+    <Cell ss:StyleID="s190"><Data ss:Type="String">Enddatum</Data></Cell>
+    <Cell ss:StyleID="s190"><Data ss:Type="String">Details</Data></Cell>
+    <Cell ss:StyleID="s190"><Data ss:Type="String">Farbe</Data></Cell>
+    <Cell ss:StyleID="s191"><Data ss:Type="String">Artikel_Link</Data></Cell>
    </Row>
-   <Row ss:Height="35">
-    <Cell ss:StyleID="s75"><Data ss:Type="String">Botschafter-Ausbildung in München</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="DateTime">2021-12-21T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="DateTime">2021-12-23T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s80"><ss:Data ss:Type="String"
+   <Row ss:AutoFitHeight="0" ss:Height="46" ss:StyleID="s184">
+    <Cell ss:StyleID="s181"><Data ss:Type="String">Wird als Titel im Kalender und der Liste angezeigt</Data></Cell>
+    <Cell ss:StyleID="s183"><Data ss:Type="String">Gib den Ort an</Data></Cell>
+    <Cell ss:StyleID="s183"><Data ss:Type="String">Startdatum im Format 25.12.2021</Data></Cell>
+    <Cell ss:StyleID="s183"><Data ss:Type="String">Enddatum im Format 25.12.2021</Data></Cell>
+    <Cell ss:StyleID="s183"><Data ss:Type="String">Beschreibe alles detailliert</Data></Cell>
+    <Cell ss:StyleID="s183"><Data ss:Type="String">Farbe angeben. Zum Beispiel: primary. Weitere Beispiele: primary, green, blue, black, purple, yellow</Data></Cell>
+    <Cell ss:StyleID="s183"><Data ss:Type="String">Die URL / Der Link wo ein klick auf &quot;Zum Artikel / Zum Produkt&quot; hinführen soll. Also eine Ausbildung in Varel führt zu www.corporate-happiness.de/shop/ausbildung-varel usw.</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="35">
+    <Cell><Data ss:Type="String">Botschafter-Ausbildung</Data></Cell>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">München</Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="DateTime">2021-12-21T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="DateTime">2021-12-23T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s142"><ss:Data ss:Type="String"
       xmlns="http://www.w3.org/TR/REC-html40"><Font html:Color="#000000">Ihr persönliches </Font><B><Font
         html:Color="#000000">Wachstum</Font></B><Font html:Color="#000000"> führt zum Wachstum der Menschen um Sie herum.</Font></ss:Data></Cell>
-    <Cell ss:StyleID="s75"><Data ss:Type="String">primary</Data></Cell>
-    <Cell ss:StyleID="s81" ss:HRef="https://www.corporate-happiness.de/botschafter-ausbildung-in-varel-upstalsboom"><Data
+    <Cell><Data ss:Type="String">primary</Data></Cell>
+    <Cell ss:StyleID="s144" ss:HRef="https://www.corporate-happiness.de/botschafter-ausbildung-in-varel-upstalsboom"><Data
       ss:Type="String">https://www.corporate-happiness.de/botschafter-ausbildung-in-varel-upstalsboom</Data></Cell>
    </Row>
-   <Row ss:Height="68">
-    <Cell ss:StyleID="s75"><Data ss:Type="String">Botschafter-Ausbildung in Varel (Upstalsboom)</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="DateTime">2021-12-20T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="DateTime">2021-12-22T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s80"><Data ss:Type="String">Erfahren Sie, wie Sie durch die wissenschaftlichen Erkenntnisse der positiven Psychologie über sich hinaus wachsen können.</Data></Cell>
-    <Cell ss:StyleID="s75"><Data ss:Type="String">green</Data></Cell>
-    <Cell ss:StyleID="s81" ss:HRef="https://www.corporate-happiness.de/botschafter-ausbildung-in-varel-upstalsboom"><Data
+   <Row ss:AutoFitHeight="0" ss:Height="68">
+    <Cell><Data ss:Type="String">Botschafter-Ausbildung</Data></Cell>
+    <Cell><Data ss:Type="String">Varel (Upstalsboom)</Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="DateTime">2021-12-20T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="DateTime">2021-12-22T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s142"><Data ss:Type="String">Erfahren Sie, wie Sie durch die wissenschaftlichen Erkenntnisse der positiven Psychologie über sich hinaus wachsen können.</Data></Cell>
+    <Cell><Data ss:Type="String">green</Data></Cell>
+    <Cell ss:StyleID="s144" ss:HRef="https://www.corporate-happiness.de/botschafter-ausbildung-in-varel-upstalsboom"><Data
       ss:Type="String">https://www.corporate-happiness.de/botschafter-ausbildung-in-varel-upstalsboom</Data></Cell>
    </Row>
-   <Row ss:Height="34">
-    <Cell ss:StyleID="s75"><Data ss:Type="String">WORKSHOP &quot;Das Neue Führen&quot;</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="DateTime">2021-12-20T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s75"/>
-    <Cell ss:StyleID="s80"/>
-    <Cell ss:StyleID="s75"><Data ss:Type="String">blue</Data></Cell>
-    <Cell ss:StyleID="s81" ss:HRef="https://www.corporate-happiness.de/botschafter-ausbildung-in-varel-upstalsboom"><Data
+   <Row ss:AutoFitHeight="0" ss:Height="34">
+    <Cell><Data ss:Type="String">WORKSHOP &quot;Das Neue Führen&quot;</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s141"><Data ss:Type="DateTime">2021-12-20T00:00:00.000</Data></Cell>
+    <Cell ss:Index="5" ss:StyleID="s142"/>
+    <Cell><Data ss:Type="String">blue</Data></Cell>
+    <Cell ss:StyleID="s144" ss:HRef="https://www.corporate-happiness.de/botschafter-ausbildung-in-varel-upstalsboom"><Data
       ss:Type="String">https://www.corporate-happiness.de/botschafter-ausbildung-in-varel-upstalsboom</Data></Cell>
    </Row>
-   <Row ss:Height="34">
-    <Cell ss:StyleID="s75"><Data ss:Type="String">KEYNOTE &quot;Inviting statt Recruiting&quot;</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="DateTime">2021-12-25T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s75"/>
-    <Cell ss:StyleID="s80"/>
-    <Cell ss:StyleID="s75"><Data ss:Type="String">black</Data></Cell>
-    <Cell ss:StyleID="s81" ss:HRef="https://www.corporate-happiness.de/botschafter-ausbildung-in-varel-upstalsboom"><Data
+   <Row ss:AutoFitHeight="0" ss:Height="34">
+    <Cell><Data ss:Type="String">KEYNOTE &quot;Inviting statt Recruiting&quot;</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s141"><Data ss:Type="DateTime">2021-12-25T00:00:00.000</Data></Cell>
+    <Cell ss:Index="5" ss:StyleID="s142"/>
+    <Cell><Data ss:Type="String">black</Data></Cell>
+    <Cell ss:StyleID="s144" ss:HRef="https://www.corporate-happiness.de/botschafter-ausbildung-in-varel-upstalsboom"><Data
       ss:Type="String">https://www.corporate-happiness.de/botschafter-ausbildung-in-varel-upstalsboom</Data></Cell>
    </Row>
-   <Row ss:Height="34">
-    <Cell ss:StyleID="s75"><Data ss:Type="String">Test 2</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="DateTime">2021-12-24T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="DateTime">2021-12-25T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s80"><Data ss:Type="String">Paar Details</Data></Cell>
-    <Cell ss:StyleID="s75"><Data ss:Type="String">purple</Data></Cell>
-    <Cell ss:StyleID="s81" ss:HRef="https://www.corporate-happiness.de/botschafter-ausbildung-in-varel-upstalsboom"><Data
+   <Row ss:AutoFitHeight="0" ss:Height="34">
+    <Cell><Data ss:Type="String">Test 2</Data></Cell>
+    <Cell><Data ss:Type="String">Tesetort</Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="DateTime">2021-12-24T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="DateTime">2021-12-25T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s142"><Data ss:Type="String">Paar Details</Data></Cell>
+    <Cell><Data ss:Type="String">purple</Data></Cell>
+    <Cell ss:StyleID="s144" ss:HRef="https://www.corporate-happiness.de/botschafter-ausbildung-in-varel-upstalsboom"><Data
       ss:Type="String">https://www.corporate-happiness.de/botschafter-ausbildung-in-varel-upstalsboom</Data></Cell>
    </Row>
   </Table>
@@ -159,8 +211,8 @@
    <Panes>
     <Pane>
      <Number>3</Number>
-     <ActiveRow>11</ActiveRow>
-     <ActiveCol>3</ActiveCol>
+     <ActiveRow>3</ActiveRow>
+     <ActiveCol>4</ActiveCol>
     </Pane>
    </Panes>
    <ProtectObjects>False</ProtectObjects>
