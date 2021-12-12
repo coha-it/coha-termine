@@ -5,7 +5,7 @@ export default {
 
   data: function () {
     return {
-      events: null,
+      events: [],
     };
   },
 
@@ -23,6 +23,19 @@ export default {
       }
       return "";
     },
+
+    mergeDateAndTime (date, time) {
+      if (date) {
+        const d = date.split('T')[0]
+        if (date && time) {
+          const t = time.split('T')[1].split('.')[0]
+          return `${d} ${t}`
+        } else {
+          return `${d}`
+        }
+      }
+      return null
+    } 
   },
 
   created: function () {
@@ -39,8 +52,21 @@ export default {
         let json = data;
 
         this.events = json.map((event) => {
-          event.start = new Date(event.start);
-          event.end = new Date(event.end);
+          event.start = this.mergeDateAndTime(event.Startdatum, event.Startuhrzeit)
+          delete event.Startdatum
+          delete event.Startuhrzeit
+
+          event.end = this.mergeDateAndTime(event.Enddatum, event.Enduhrzeit)
+          delete event.Enddatum
+          delete event.Enduhrzeit
+
+          const name = event.Name
+          delete event.Name
+          event.name = `${name}${event.Ort ? ' in ' + event.Ort : ''}`
+
+          event.color = event.Farbe
+          delete event.Farbe
+
           return event;
         });
 

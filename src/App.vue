@@ -12,7 +12,6 @@ import loadevents from "@/mixins/loadevents";
 
 export default {
   name: "App",
-
   mixins: [loadevents],
 };
 </script>
