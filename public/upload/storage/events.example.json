@@ -1,1 +1,38 @@
-[{"name":"Botschafter-Ausbildung in M\u00fcnchen","start":"2021-12-21T00:00:00.000","end":"2021-12-23T00:00:00.000","details":"Ihr pers\u00f6nliches <B>Wachstum<\/B> f\u00fchrt zum Wachstum der Menschen um Sie herum.","color":"primary","article_url":"https:\/\/www.corporate-happiness.de\/botschafter-ausbildung-in-varel-upstalsboom"},{"name":"Botschafter-Ausbildung in Varel (Upstalsboom)","start":"2021-12-20T00:00:00.000","end":"2021-12-22T00:00:00.000","details":"Erfahren Sie, wie Sie durch die wissenschaftlichen Erkenntnisse der positiven Psychologie \u00fcber sich hinaus wachsen k\u00f6nnen.","color":"green","article_url":"https:\/\/www.corporate-happiness.de\/botschafter-ausbildung-in-varel-upstalsboom"},{"name":"WORKSHOP \"Das Neue F\u00fchren\"","start":"2021-12-20T00:00:00.000","details":"blue","color":"https:\/\/www.corporate-happiness.de\/botschafter-ausbildung-in-varel-upstalsboom"},{"name":"KEYNOTE \"Inviting statt Recruiting\"","start":"2021-12-25T00:00:00.000","details":"black","color":"https:\/\/www.corporate-happiness.de\/botschafter-ausbildung-in-varel-upstalsboom"},{"name":"Test 2","start":"2021-12-24T00:00:00.000","end":"2021-12-25T00:00:00.000","details":"Paar Details","color":"purple","article_url":"https:\/\/www.corporate-happiness.de\/botschafter-ausbildung-in-varel-upstalsboom"}]
+[
+  {
+    "name": "Botschafter-Ausbildung in M\u00fcnchen",
+    "start": "2021-12-21T00:00:00.000",
+    "end": "2021-12-23T00:00:00.000",
+    "details": "Ihr pers\u00f6nliches <B>Wachstum<\/B> f\u00fchrt zum Wachstum der Menschen um Sie herum.",
+    "color": "primary",
+    "article_url": "https:\/\/www.corporate-happiness.de\/botschafter-ausbildung-in-varel-upstalsboom"
+  },
+  {
+    "name": "Botschafter-Ausbildung in Varel (Upstalsboom)",
+    "start": "2021-12-20T00:00:00.000",
+    "end": "2021-12-22T00:00:00.000",
+    "details": "Erfahren Sie, wie Sie durch die wissenschaftlichen Erkenntnisse der positiven Psychologie \u00fcber sich hinaus wachsen k\u00f6nnen.",
+    "color": "green",
+    "article_url": "https:\/\/www.corporate-happiness.de\/botschafter-ausbildung-in-varel-upstalsboom"
+  },
+  {
+    "name": "WORKSHOP \"Das Neue F\u00fchren\"",
+    "start": "2021-12-20T00:00:00.000",
+    "details": "blue",
+    "color": "https:\/\/www.corporate-happiness.de\/botschafter-ausbildung-in-varel-upstalsboom"
+  },
+  {
+    "name": "KEYNOTE \"Inviting statt Recruiting\"",
+    "start": "2021-12-25T00:00:00.000",
+    "details": "black",
+    "color": "https:\/\/www.corporate-happiness.de\/botschafter-ausbildung-in-varel-upstalsboom"
+  },
+  {
+    "name": "Test 2",
+    "start": "2021-12-24T00:00:00.000",
+    "end": "2021-12-25T00:00:00.000",
+    "details": "Paar Details",
+    "color": "purple",
+    "article_url": "https:\/\/www.corporate-happiness.de\/botschafter-ausbildung-in-varel-upstalsboom"
+  }
+]
