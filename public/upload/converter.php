@@ -108,7 +108,7 @@ move_uploaded_file($file_tmp_name, $xml);
 // Generate Array / Json and put file contents
 $events = array_from_worksheet_table($xml, 'events');
 $events = array_values($events); // Array to Value-Array
-$events = array_shift($events); // Remove first row (only descriptions)
+array_shift($events); // Remove first row (only descriptions)
 if($events && count($events) > 4) {
   file_put_contents($json, json_encode($events));
 }
