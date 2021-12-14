@@ -1,5 +1,10 @@
 <?php
 
+// // Header (won't  work on CLI)
+// header('Access-Control-Allow-Origin: *');
+// header('Access-Control-Allow-Methods: GET, POST');
+// header("Access-Control-Allow-Headers: X-Requested-With");
+
 /* array_from_worksheet_table()
  * Generate an array from an XML Worksheet
  * $file needs to be the full path to your file (e.g., '/Users/jeremy/www/cms/files/yourfile.xml')
@@ -86,12 +91,29 @@ function array_from_worksheet_table($file, $worksheet_name) {
   return false;
 }
 
-// Generate Array / Json
-$events = array_from_worksheet_table('events.xml', 'events');
-$events = array_values($events);
-$json = json_encode($events);
+// Check Pin
+if (md5($_POST['pin']) !== '16488d8be3cd9a878ebc817402c7b14d') {
+  http_response_code(401);
+  die("WRONG PING");
+}
 
-file_put_contents('events.json', $json);
+// Upload File
+$file_tmp_name = $_FILES['file']['tmp_name'];
+$storage = 'storage';
+$xml = "$storage/events.xml";
+$json = "$storage/events.json";
+move_uploaded_file($file_tmp_name, $xml);
+
+
+// Generate Array / Json and put file contents
+$events = array_from_worksheet_table($xml, 'events');
+$events = array_values($events); // Array to Value-Array
+array_shift($events); // Remove first row (only descriptions)
+if($events && count($events) > 4) {
+  file_put_contents($json, json_encode($events));
+}
+
+
 
 // Old Stuff
 
