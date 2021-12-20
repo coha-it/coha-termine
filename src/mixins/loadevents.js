@@ -41,7 +41,7 @@ export default {
   created: function () {
     axios({
       method: "GET",
-      url: process?.env?.VUE_APP_FILENAME,
+      url: process?.env?.VUE_APP_API + process?.env?.VUE_APP_FILENAME,
       data: {},
       headers: {
         "Content-Type": "application/json;charset=UTF-8",

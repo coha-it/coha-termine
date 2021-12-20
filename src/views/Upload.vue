@@ -56,7 +56,7 @@
 import axios from "axios";
 
 export default {
-  name: "FileUpload",
+  name: "Upload",
 
   data: () => ({
     valid: true,
@@ -79,7 +79,7 @@ export default {
 
       axios({
         method: "POST",
-        url: process?.env?.VUE_APP_UPLOAD_URL,
+        url: process?.env?.VUE_APP_API + process?.env?.VUE_APP_UPLOAD_URL,
         data: formData,
         headers: {
           "Content-Type": "multipart/form-data",
