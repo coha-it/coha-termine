@@ -48,8 +48,7 @@ export default {
       },
     }).then(
       (response) => {
-        let data = response.data;
-        let json = data;
+        let json = response.data;
 
         this.events = json.map((event) => {
           event.start = this.mergeDateAndTime(event.Startdatum, event.Startuhrzeit)
@@ -60,14 +59,17 @@ export default {
           delete event.Enddatum
           delete event.Enduhrzeit
 
-          const name = event.Name
-          delete event.Name
+          const name = event.Titel
+          delete event.Titel
           event.name = `${name}${event.Ort ? ' in ' + event.Ort : ''}`
 
           event.color = event.Farbe
           delete event.Farbe
 
-          return event;
+          event.category = event.Kategorie
+          delete event.Kategorie
+
+          return event
         });
 
         console.log(this.events);
