@@ -27,6 +27,8 @@ v-container
                   v-list-item-title Woche
                 v-list-item(@click="type = '4day'")
                   v-list-item-title 4 Tage
+                v-list-item(@click="type = 'category'")
+                  v-list-item-title Kategorie-Ansicht
         v-sheet(height='600' v-if='events')
           v-calendar(
             ref='calendar'
@@ -43,6 +45,7 @@ v-container
             @click:more='viewDay'
             @click:date='viewDay'
             @change='updateRange'
+            :categories='getCategoriesFromEvents'
           )
           v-menu(v-model='selectedOpen' :close-on-content-click='false' :activator='selectedElement' offset-x)
             v-card(color='grey lighten-4' min-width='350px' flat)
@@ -72,12 +75,14 @@ export default {
   data: () => ({
     focus: new Date().toISOString().substr(0, 10),
     today: new Date().toISOString().substr(0, 10),
+    // tomorrow: new Date(new Date().getTime() + (24 * 60 * 60 * 1000)).toISOString().substr(0, 10),
     type: "month",
     typeToLabel: {
       month: "Monat",
       week: "Woche",
       day: "Tage",
       "4day": "4 Tage",
+      "category": "Kategorie",
     },
     start: null,
     end: null,
@@ -86,6 +91,11 @@ export default {
     selectedOpen: false,
   }),
   computed: {
+    getCategoriesFromEvents() {
+      const categories = this.events.map(a => a.category).filter((value, index, array) => array.indexOf(value) === index)
+      console.log(categories)
+      return categories
+    },
     title() {
       const { start, end } = this;
       if (!start || !end) {
