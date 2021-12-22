@@ -1,0 +1,33 @@
+// Custom
+
+.coha_calendar_wrapper,
+.coha_calendar_toolbar > div {
+  margin: auto;
+  width: clamp(320px, 98vw, 1200px);
+  // max-width: calc(200vh + 20vw);
+}
+
+.coha_calendar_toolbar {
+  position: sticky;
+  top: 0px;
+  z-index: 2;
+  backdrop-filter: blur(2px);
+  background-color: rgb(255 255 255 / 73%) !important;
+  border-bottom: 1px solid rgb(0 0 0 / 13%) !important;
+}
+
+.coha_calendar_wrapper {
+  // Weird height fix
+  height: clamp(500px, 85vh, 850px);
+  max-height: calc(90vw + 25vh);
+}
+
+
+.v-calendar-weekly__day-label {
+  margin: 2px;
+}
+
+.v-calendar-weekly__day-label > .v-btn {
+  height: 32px;
+  width: 32px;
+}
