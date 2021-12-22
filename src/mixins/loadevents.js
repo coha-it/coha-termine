@@ -8,6 +8,7 @@ export default {
       data: {
         events: [],
         earliest: null,
+        loaded: false,
       }
     };
   },
@@ -100,6 +101,8 @@ export default {
           event.rename_key('kategorie', 'category')
           event.rename_key('farbe', 'color')
           event.rename_key('schlagwörter', 'tags')
+          event.rename_key('veranstalter', 'organizer')
+          event.rename_key('artikel_link', 'article_url')
 
           // Change Dates
           event.start = this.mergeDateAndTime(event.startdatum, event.startuhrzeit)
@@ -125,6 +128,7 @@ export default {
         this.data.events = events
         this.data.earliest = events?.reduce((a, b) => { return a < b.start ? a : b.start })
         this.data.categories = events?.map(a => a.category).filter((value, index, array) => array.indexOf(value) === index)
+        this.data.loaded = this.data.events.length > 0
       },
       (error) => {
         console.log(error);

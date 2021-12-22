@@ -10,8 +10,6 @@ v-container.pa-0(fluid v-if="events")
     v-btn(fab text small @click='next')
       v-icon(small) mdi-chevron-right
     v-toolbar-title {{ title }}
-    .pl-4(v-if="dev")
-      v-btn(@click="debug") Debug
     v-spacer
     v-icon(v-if="type != 'month'" @click="type = 'month'") mdi-backup-restore
     v-menu(bottom right)
@@ -48,6 +46,8 @@ v-container.pa-0(fluid v-if="events")
       @change='updateRange'
       :categories='categories'
     )
+      template(v-slot:event="{ event }")
+        .pl-1 {{ event.name }}
     v-menu(
       v-model='selectedOpen'
       :close-on-content-click='false'
@@ -199,12 +199,6 @@ export default {
         ? "th"
         : ["th", "st", "nd", "rd", "th", "th", "th", "th", "th", "th"][d % 10];
     },
-    debug () {
-      // console.log(this.focus)
-      // console.log('test')
-      console.log(this.data)
-      // console.log(this.events.sort((a, b) => {new Date(a.start) - new Date(b.start)}))
-    }
   },
 };
 </script>

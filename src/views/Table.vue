@@ -1,10 +1,19 @@
 <template lang="pug">
 v-container.table-view
   h1 Tabelle:
-  v-data-table(
+
+  v-text-field(
+    v-model="search"
+    append-icon="mdi-magnify"
+    label="Search"
+    single-line
+    hide-details
+  )
+
+  v-data-table.elevation-1(
     :headers="headers"
     :items="events"
-    class="elevation-1"
+    :search="search"
   )
     //- template(v-slot:item.calories="{ item }")
     //-   v-chip(
@@ -32,24 +41,44 @@ export default {
 
   data () {
     return {
+      search: '',
       headers: [
         {
           text: 'Titel',
-          align: 'start',
-          sortable: false,
           value: 'name',
         },
         {
           text: 'Ort',
-          align: 'start',
-          sortable: false,
           value: 'ort',
         },
-        'start',
-        'end',
-        'details',
-        'color',
-        'article_url',
+        {
+          text: 'Startdatum',
+          value: 'start',
+        },
+        {
+          text: 'Enddatum',
+          value: 'end',
+        },
+        {
+          text: 'Schlagwörter',
+          value: 'tags',
+        },
+        {
+          text: 'Kategorie',
+          value: 'category',
+        },
+        {
+          text: 'Veranstalter',
+          value: 'organizer',
+        },
+        {
+          text: 'Details',
+          value: 'details',
+        },
+        {
+          text: 'Artikel-URL',
+          value: 'article_url',
+        },
       ],
     };
   },
