@@ -39,7 +39,7 @@ const routes = [
   },
   {
     path: "/:catchAll(.*)",
-    name: 'Calendar',
+    name: 'NotFound',
     component: () => import('../views/NotFound.vue')
   },
 ]

@@ -46,6 +46,21 @@ export default {
       var doc = new DOMParser().parseFromString(input, "text/html")
       return doc?.documentElement?.textContent ?? input
     },
+
+    getColorByCategory (cat) {
+      const colors = {
+        // "Offenes Programm"      : '#FED118',
+        "Offenes Programm"      : 'blue lighten-4',
+        "Botschaftertreffen"    : 'amber lighten-3',
+        // "Seminar"               : '',
+        "Workshop"              : 'blue-grey lighten-1',
+        "Impulsabend"           : 'orange darken-2',
+        "Keynote"               : 'yellow darken-1',
+        "Leitbild-Abend"        : 'blue-grey lighten-2',
+        "Unternehmerwanderung"  : 'brown lighten-2',
+      }
+      return colors[cat]
+    }
   },
 
   created: function () {
@@ -60,7 +75,7 @@ export default {
       (response) => {
         let json = response.data;
 
-        this.data.events = json.map((event) => {
+        const events = json.map((event) => {
           event.start = this.mergeDateAndTime(event.Startdatum, event.Startuhrzeit)
           delete event.Startdatum
           delete event.Startuhrzeit
@@ -69,20 +84,25 @@ export default {
           delete event.Enddatum
           delete event.Enduhrzeit
 
-          const name = this.htmlDecode(event.Titel)
+          // event.name = `${name}${event.Ort ? ' in ' + event.Ort : ''}`
+          event.name = this.htmlDecode(event.Title ? event.Title : `${event.Untertitel}${event.Ort ? ' in ' + event.Ort : ''}`)
           delete event.Titel
-          event.name = `${name}${event.Ort ? ' in ' + event.Ort : ''}`
-
-          event.color = event.Farbe
-          delete event.Farbe
 
           event.category = event.Kategorie
           delete event.Kategorie
 
-          return event
-        });
+          event.color = event.Farbe
+          delete event.Farbe
 
-        this.data.earliest = this.data?.events?.reduce((a, b) => { return a < b.start ? a : b.start })
+          if (!event.color) {
+            event.color = this.getColorByCategory(event.category)
+          }
+
+          return event
+        })
+        this.data.events = events
+        this.data.earliest = events?.reduce((a, b) => { return a < b.start ? a : b.start })
+        this.data.categories = events?.map(a => a.category).filter((value, index, array) => array.indexOf(value) === index)
       },
       (error) => {
         console.log(error);

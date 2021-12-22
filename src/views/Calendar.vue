@@ -4,7 +4,10 @@ v-container
     v-col
       v-sheet(height='64')
         v-toolbar(flat color='white')
-          v-btn.mr-4(outlined @click='setToday')  Heute 
+          v-btn.mr-4(
+            outlined
+            @click='setToday'
+          ) Heute 
           v-btn(fab text small @click='prev')
             v-icon(small) mdi-chevron-left
           v-btn(fab text small @click='next')
@@ -46,11 +49,16 @@ v-container
           @click:more='viewDay'
           @click:date='viewDay'
           @change='updateRange'
-          :categories='getCategoriesFromEvents'
+          :categories='categories'
         )
-        v-menu(v-model='selectedOpen' :close-on-content-click='false' :activator='selectedElement' offset-x)
+        v-menu(
+          v-model='selectedOpen'
+          :close-on-content-click='false'
+          :activator='selectedElement'
+          offset-x
+        )
           v-card(color='grey lighten-4' min-width='350px' flat)
-            v-toolbar(color='secondary' dark)
+            v-toolbar(:color='selectedEvent.color' dark)
               v-toolbar-title(v-html='selectedEvent.name')
               v-spacer
               v-btn(icon target='_blank' :href="selectedEvent.article_url")
@@ -93,12 +101,10 @@ export default {
   }),
   computed: {
     events () {
-      return this.data.events
+      return this.data?.events
     },
-    getCategoriesFromEvents() {
-      const categories = this.events.map(a => a.category).filter((value, index, array) => array.indexOf(value) === index)
-      console.log(categories)
-      return categories
+    categories () {
+      return this.data?.categories
     },
     title() {
       const { start, end } = this;
@@ -144,9 +150,15 @@ export default {
   },
   mounted() {
     this.$refs.calendar.checkChange()
-    this.focus = this.data.earliest ?? this.today
+
+    this.focusEarliestOrToday()
   },
   methods: {
+    focusEarliestOrToday () {
+      const earliest = this.data.earliest
+      const today = this.today
+      this.focus = earliest > today ? earliest : today
+    },
     viewDay({ date }) {
       this.focus = date;
       this.type = "day";
@@ -193,7 +205,7 @@ export default {
     debug () {
       // console.log(this.focus)
       // console.log('test')
-      // console.log(this.events)
+      console.log(this.data)
       // console.log(this.events.sort((a, b) => {new Date(a.start) - new Date(b.start)}))
     }
   },
