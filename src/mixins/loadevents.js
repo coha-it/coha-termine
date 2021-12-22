@@ -111,7 +111,7 @@ export default {
           delete event.enduhrzeit
 
           // event.name = `${name}${event.Ort ? ' in ' + event.Ort : ''}`
-          event.titel = this.htmlDecode(event.title ? event.title : `${event.untertitel}${event.ort ? ' in ' + event.ort : ''}`)
+          event.name = this.htmlDecode(event.name ? event.name : `${event.untertitel}${event.ort ? ' in ' + event.ort : ''}`)
 
           event.color = event.color ? event.color : this.getColorByCategory(event.category)
 
@@ -120,7 +120,7 @@ export default {
 
           // Return event
           return event
-        })
+        }).sort((a, b) => new Date(a.start) - new Date(b.start))
 
         this.data.events = events
         this.data.earliest = events?.reduce((a, b) => { return a < b.start ? a : b.start })

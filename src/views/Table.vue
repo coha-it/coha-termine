@@ -37,7 +37,7 @@ export default {
           text: 'Titel',
           align: 'start',
           sortable: false,
-          value: 'titel',
+          value: 'name',
         },
         {
           text: 'Ort',
