@@ -100,6 +100,8 @@ export default {
           event.rename_key('kategorie', 'category')
           event.rename_key('farbe', 'color')
           event.rename_key('schlagwörter', 'tags')
+          event.rename_key('veranstalter', 'organizer')
+          event.rename_key('artikel_link', 'article_url')
 
           // Change Dates
           event.start = this.mergeDateAndTime(event.startdatum, event.startuhrzeit)

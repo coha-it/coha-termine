@@ -7,6 +7,8 @@ v-app
       router-link.mr-4(:to="{ name: 'Upload' }") upload
       router-link.mr-4(:to="{ name: 'Calendar' }") kalender
       router-link.mr-4(:to="{ name: 'Table' }") table
+      .pl-4(v-if="dev")
+        v-btn(size="small" @click="debug") Debug
 </template>
 
 <style lang="scss" scoped>
@@ -29,6 +31,14 @@ export default {
     dev () {
       return process?.env?.NODE_ENV === 'development'
     }
+  },
+  methods: {
+    debug () {
+      // console.log(this.focus)
+      // console.log('test')
+      console.log(this.data)
+      // console.log(this.events.sort((a, b) => {new Date(a.start) - new Date(b.start)}))
+    },
   }
 };
 </script>

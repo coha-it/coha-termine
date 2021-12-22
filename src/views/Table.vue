@@ -35,21 +35,40 @@ export default {
       headers: [
         {
           text: 'Titel',
-          align: 'start',
-          sortable: false,
           value: 'name',
         },
         {
           text: 'Ort',
-          align: 'start',
-          sortable: false,
           value: 'ort',
         },
-        'start',
-        'end',
-        'details',
-        'color',
-        'article_url',
+        {
+          text: 'Startdatum',
+          value: 'start',
+        },
+        {
+          text: 'Enddatum',
+          value: 'end',
+        },
+        {
+          text: 'Schlagwörter',
+          value: 'tags',
+        },
+        {
+          text: 'Kategorie',
+          value: 'category',
+        },
+        {
+          text: 'Veranstalter',
+          value: 'organizer',
+        },
+        {
+          text: 'Details',
+          value: 'details',
+        },
+        {
+          text: 'Artikel-URL',
+          value: 'article_url',
+        },
       ],
     };
   },
