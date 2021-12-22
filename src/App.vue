@@ -1,7 +1,7 @@
 <template lang="pug">
 v-app
   Main
-    router-view(v-if="loaded" :data="data")
+    router-view(:data="data")
   v-container
     v-footer(v-if="dev" bottom color="transparent")
       router-link.mr-4(:to="{ name: 'Upload' }") upload
