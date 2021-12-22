@@ -5,26 +5,31 @@ export default {
 
   data: function () {
     return {
-      events: [],
+      data: {
+        events: [],
+        earliest: null,
+      }
     };
   },
 
   methods: {
-    convertDateGerman(dateString) {
-      //  Convert a "dd.MM.yyyy" string into a Date object
-      if (typeof dateString === "string" && dateString != "") {
-        const date_array = dateString.split(".");
-        const month = date_array[1];
-        const year = date_array[2];
-        const day = date_array[0];
-        return new Date(
-          `${year.length > 2 ? year : "20" + year}-${month}-${day}`
-        );
-      }
-      return "";
-    },
+    /*
+    * Convert a "dd.MM.yyyy" string into a Date object
+    */
+    // convertDateGerman(dateString) {
+    //   if (typeof dateString === "string" && dateString != "") {
+    //     const date_array = dateString.split(".");
+    //     const month = date_array[1];
+    //     const year = date_array[2];
+    //     const day = date_array[0];
+    //     return new Date(
+    //       `${year.length > 2 ? year : "20" + year}-${month}-${day}`
+    //     );
+    //   }
+    //   return '';
+    // },
 
-    mergeDateAndTime (date, time) {
+    mergeDateAndTime(date, time) {
       if (date) {
         const d = date.split('T')[0]
         if (date && time) {
@@ -35,7 +40,12 @@ export default {
         }
       }
       return null
-    } 
+    },
+
+    htmlDecode(input) {
+      var doc = new DOMParser().parseFromString(input, "text/html")
+      return doc?.documentElement?.textContent ?? input
+    },
   },
 
   created: function () {
@@ -50,7 +60,7 @@ export default {
       (response) => {
         let json = response.data;
 
-        this.events = json.map((event) => {
+        this.data.events = json.map((event) => {
           event.start = this.mergeDateAndTime(event.Startdatum, event.Startuhrzeit)
           delete event.Startdatum
           delete event.Startuhrzeit
@@ -59,7 +69,7 @@ export default {
           delete event.Enddatum
           delete event.Enduhrzeit
 
-          const name = event.Titel
+          const name = this.htmlDecode(event.Titel)
           delete event.Titel
           event.name = `${name}${event.Ort ? ' in ' + event.Ort : ''}`
 
@@ -72,7 +82,7 @@ export default {
           return event
         });
 
-        console.log(this.events);
+        this.data.earliest = this.data?.events?.reduce((a, b) => { return a < b.start ? a : b.start })
       },
       (error) => {
         console.log(error);
