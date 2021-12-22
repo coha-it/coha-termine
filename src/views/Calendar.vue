@@ -46,6 +46,8 @@ v-container.pa-0(fluid v-if="events")
       @change='updateRange'
       :categories='categories'
     )
+      template(v-slot:event="{ event }")
+        .pl-1 {{ event.name }}
     v-menu(
       v-model='selectedOpen'
       :close-on-content-click='false'

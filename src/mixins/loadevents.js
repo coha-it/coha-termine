@@ -8,6 +8,7 @@ export default {
       data: {
         events: [],
         earliest: null,
+        loaded: false,
       }
     };
   },
@@ -127,6 +128,7 @@ export default {
         this.data.events = events
         this.data.earliest = events?.reduce((a, b) => { return a < b.start ? a : b.start })
         this.data.categories = events?.map(a => a.category).filter((value, index, array) => array.indexOf(value) === index)
+        this.data.loaded = this.data.events.length > 0
       },
       (error) => {
         console.log(error);
