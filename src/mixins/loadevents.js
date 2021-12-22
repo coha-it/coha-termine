@@ -60,7 +60,14 @@ export default {
         "Unternehmerwanderung"  : 'brown lighten-2',
       }
       return colors[cat]
-    }
+    },
+
+    lowercaseKeys: obj => {
+      return Object.keys(obj).reduce((acc, key) => {
+        acc[key.toLowerCase()] = obj[key]
+        return acc
+      }, {})
+    },
   },
 
   created: function () {
@@ -76,30 +83,44 @@ export default {
         let json = response.data;
 
         const events = json.map((event) => {
-          event.start = this.mergeDateAndTime(event.Startdatum, event.Startuhrzeit)
-          delete event.Startdatum
-          delete event.Startuhrzeit
 
-          event.end = this.mergeDateAndTime(event.Enddatum, event.Enduhrzeit)
-          delete event.Enddatum
-          delete event.Enduhrzeit
-
-          // event.name = `${name}${event.Ort ? ' in ' + event.Ort : ''}`
-          event.name = this.htmlDecode(event.Title ? event.Title : `${event.Untertitel}${event.Ort ? ' in ' + event.Ort : ''}`)
-          delete event.Titel
-
-          event.category = event.Kategorie
-          delete event.Kategorie
-
-          event.color = event.Farbe
-          delete event.Farbe
-
-          if (!event.color) {
-            event.color = this.getColorByCategory(event.category)
+          // Rename Key function
+          event.rename_key = function (o, n) {
+            const tmp = event[o]
+            delete event[o]
+            event[n] = tmp
           }
 
+          // Lowercase all Keys
+          event = this.lowercaseKeys(event)
+
+          // Renaming
+          event.rename_key('Untertitel', 'subtitle')
+          event.rename_key('titel', 'name')
+          event.rename_key('kategorie', 'category')
+          event.rename_key('farbe', 'color')
+
+          // Change Dates
+          event.start = this.mergeDateAndTime(event.startdatum, event.startuhrzeit)
+          delete event.startdatum
+          delete event.startuhrzeit
+
+          event.end = this.mergeDateAndTime(event.enddatum, event.enduhrzeit)
+          delete event.enddatum
+          delete event.enduhrzeit
+
+          // event.name = `${name}${event.Ort ? ' in ' + event.Ort : ''}`
+          event.titel = this.htmlDecode(event.title ? event.title : `${event.untertitel}${event.ort ? ' in ' + event.ort : ''}`)
+
+          event.color = event.color ? event.color : this.getColorByCategory(event.category)
+
+          // Delete Function
+          delete event.rename_key
+
+          // Return event
           return event
         })
+
         this.data.events = events
         this.data.earliest = events?.reduce((a, b) => { return a < b.start ? a : b.start })
         this.data.categories = events?.map(a => a.category).filter((value, index, array) => array.indexOf(value) === index)

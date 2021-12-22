@@ -2,10 +2,11 @@
 v-app
   Main
     router-view(v-if="loaded" :data="data")
-  v-footer(v-if="dev" bottom color="transparent")
-    router-link.mr-4(:to="{ name: 'Upload' }") upload
-    router-link.mr-4(:to="{ name: 'Calendar' }") kalender
-    router-link.mr-4(:to="{ name: 'Table' }") table
+  v-container
+    v-footer(v-if="dev" bottom color="transparent")
+      router-link.mr-4(:to="{ name: 'Upload' }") upload
+      router-link.mr-4(:to="{ name: 'Calendar' }") kalender
+      router-link.mr-4(:to="{ name: 'Table' }") table
 </template>
 
 <style lang="scss" scoped>
