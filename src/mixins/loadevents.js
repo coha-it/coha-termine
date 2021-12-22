@@ -95,10 +95,11 @@ export default {
           event = this.lowercaseKeys(event)
 
           // Renaming
-          event.rename_key('Untertitel', 'subtitle')
+          event.rename_key('untertitel', 'subtitle')
           event.rename_key('titel', 'name')
           event.rename_key('kategorie', 'category')
           event.rename_key('farbe', 'color')
+          event.rename_key('schlagwörter', 'tags')
 
           // Change Dates
           event.start = this.mergeDateAndTime(event.startdatum, event.startuhrzeit)
