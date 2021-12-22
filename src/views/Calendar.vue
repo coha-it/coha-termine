@@ -1,60 +1,69 @@
 <template lang="pug">
-v-container
-  template
-    v-row.fill-height
-      v-col
-        v-sheet(height='64')
-          v-toolbar(flat color='white')
-            v-btn.mr-4(outlined @click='setToday')  Heute 
-            v-btn(fab text small @click='prev')
-              v-icon(small) mdi-chevron-left
-            v-btn(fab text small @click='next')
-              v-icon(small) mdi-chevron-right
-            v-toolbar-title {{ title }}
-            v-spacer
-            v-icon(v-if="type != 'month'" @click="type = 'month'") mdi-backup-restore
-            v-menu(bottom right)
-              template(v-slot:activator='{ on }')
-                v-btn(outlined v-on='on')
-                  span {{ typeToLabel[type] }}
-                  v-icon(right) mdi-menu-down
-              v-list
-                v-list-item(@click="type = 'month'")
-                  v-list-item-title Monat
-                v-list-item(@click="type = 'day'")
-                  v-list-item-title Tag
-                v-list-item(@click="type = 'week'")
-                  v-list-item-title Woche
-                v-list-item(@click="type = '4day'")
-                  v-list-item-title 4 Tage
-        v-sheet(height='600' v-if='events')
-          v-calendar(
-            ref='calendar'
-            v-model='focus'
-            color='primary'
-            locale='de'
-            :events='events'
-            :event-color='getEventColor'
-            :event-margin-bottom='3'
-            :now='today'
-            :type='type'
-            :weekdays='[1, 2, 3, 4, 5, 6, 0]'
-            @click:event='showEvent'
-            @click:more='viewDay'
-            @click:date='viewDay'
-            @change='updateRange'
-          )
-          v-menu(v-model='selectedOpen' :close-on-content-click='false' :activator='selectedElement' offset-x)
-            v-card(color='grey lighten-4' min-width='350px' flat)
-              v-toolbar(color='secondary' dark)
-                v-toolbar-title(v-html='selectedEvent.name')
-                v-spacer
-                v-btn(icon target='_blank' :href="selectedEvent.article_url")
-                  v-icon mdi-calendar
-              v-card-text
-                span(v-html='selectedEvent.details')
-              v-card-actions
-                v-btn(text color='secondary' @click='selectedOpen = false') Schlie&szlig;en
+v-container.pa-0(fluid v-if="events")
+  v-app-bar.pt-0.coha_calendar_toolbar(flat dense)
+    v-btn.mr-4(
+      outlined
+      @click='setToday'
+    ) Heute 
+    v-btn(fab text small @click='prev')
+      v-icon(small) mdi-chevron-left
+    v-btn(fab text small @click='next')
+      v-icon(small) mdi-chevron-right
+    v-toolbar-title {{ title }}
+    .pl-4(v-if="dev")
+      v-btn(@click="debug") Debug
+    v-spacer
+    v-icon(v-if="type != 'month'" @click="type = 'month'") mdi-backup-restore
+    v-menu(bottom right)
+      template(v-slot:activator='{ on }')
+        v-btn(outlined v-on='on')
+          span {{ typeToLabel[type] }}
+          v-icon(right) mdi-menu-down
+      v-list
+        v-list-item(@click="type = 'month'")
+          v-list-item-title Monat
+        v-list-item(@click="type = 'day'")
+          v-list-item-title Tag
+        v-list-item(@click="type = 'week'")
+          v-list-item-title Woche
+        v-list-item(@click="type = '4day'")
+          v-list-item-title 4 Tage
+        v-list-item(@click="type = 'category'")
+          v-list-item-title Kategorie-Ansicht
+  .coha_calendar_wrapper.mt-2
+    v-calendar(
+      ref='calendar'
+      v-model='focus'
+      color='primary'
+      locale='de'
+      :events='events'
+      :event-color='getEventColor'
+      :event-margin-bottom='3'
+      :now='today'
+      :type='type'
+      :weekdays='[1, 2, 3, 4, 5, 6, 0]'
+      @click:event='showEvent'
+      @click:more='viewDay'
+      @click:date='viewDay'
+      @change='updateRange'
+      :categories='categories'
+    )
+    v-menu(
+      v-model='selectedOpen'
+      :close-on-content-click='false'
+      :activator='selectedElement'
+      offset-x
+    )
+      v-card(color='grey lighten-4' min-width='350px' flat)
+        v-toolbar(:color='selectedEvent.color' dark)
+          v-toolbar-title(v-html='selectedEvent.name')
+          v-spacer
+          v-btn(icon target='_blank' :href="selectedEvent.article_url")
+            v-icon mdi-calendar
+        v-card-text
+          span(v-html='selectedEvent.details')
+        v-card-actions
+          v-btn(text color='secondary' @click='selectedOpen = false') Schlie&szlig;en
 </template>
 
 <script>
@@ -63,21 +72,23 @@ export default {
   name: 'Calendar',
 
   props: {
-    events: {
-      type: Array,
+    data: {
+      type: Object,
       required: true,
     }
   },
 
   data: () => ({
-    focus: new Date().toISOString().substr(0, 10),
+    focus: null,
     today: new Date().toISOString().substr(0, 10),
+    // tomorrow: new Date(new Date().getTime() + (24 * 60 * 60 * 1000)).toISOString().substr(0, 10),
     type: "month",
     typeToLabel: {
       month: "Monat",
       week: "Woche",
       day: "Tage",
       "4day": "4 Tage",
+      "category": "Kategorie",
     },
     start: null,
     end: null,
@@ -86,6 +97,12 @@ export default {
     selectedOpen: false,
   }),
   computed: {
+    events () {
+      return this.data?.events
+    },
+    categories () {
+      return this.data?.categories
+    },
     title() {
       const { start, end } = this;
       if (!start || !end) {
@@ -120,11 +137,25 @@ export default {
         month: "long",
       });
     },
+
+    prod () {
+      return process?.env?.NODE_ENV === 'production'
+    },
+    dev () {
+      return process?.env?.NODE_ENV === 'development'
+    },
   },
   mounted() {
-    this.$refs.calendar.checkChange();
+    this.$refs.calendar.checkChange()
+
+    this.focusEarliestOrToday()
   },
   methods: {
+    focusEarliestOrToday () {
+      const earliest = this.data.earliest
+      const today = this.today
+      this.focus = earliest > today ? earliest : today
+    },
     viewDay({ date }) {
       this.focus = date;
       this.type = "day";
@@ -168,6 +199,12 @@ export default {
         ? "th"
         : ["th", "st", "nd", "rd", "th", "th", "th", "th", "th", "th"][d % 10];
     },
+    debug () {
+      // console.log(this.focus)
+      // console.log('test')
+      console.log(this.data)
+      // console.log(this.events.sort((a, b) => {new Date(a.start) - new Date(b.start)}))
+    }
   },
 };
 </script>

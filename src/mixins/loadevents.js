@@ -5,26 +5,31 @@ export default {
 
   data: function () {
     return {
-      events: [],
+      data: {
+        events: [],
+        earliest: null,
+      }
     };
   },
 
   methods: {
-    convertDateGerman(dateString) {
-      //  Convert a "dd.MM.yyyy" string into a Date object
-      if (typeof dateString === "string" && dateString != "") {
-        const date_array = dateString.split(".");
-        const month = date_array[1];
-        const year = date_array[2];
-        const day = date_array[0];
-        return new Date(
-          `${year.length > 2 ? year : "20" + year}-${month}-${day}`
-        );
-      }
-      return "";
-    },
+    /*
+    * Convert a "dd.MM.yyyy" string into a Date object
+    */
+    // convertDateGerman(dateString) {
+    //   if (typeof dateString === "string" && dateString != "") {
+    //     const date_array = dateString.split(".");
+    //     const month = date_array[1];
+    //     const year = date_array[2];
+    //     const day = date_array[0];
+    //     return new Date(
+    //       `${year.length > 2 ? year : "20" + year}-${month}-${day}`
+    //     );
+    //   }
+    //   return '';
+    // },
 
-    mergeDateAndTime (date, time) {
+    mergeDateAndTime(date, time) {
       if (date) {
         const d = date.split('T')[0]
         if (date && time) {
@@ -35,7 +40,34 @@ export default {
         }
       }
       return null
-    } 
+    },
+
+    htmlDecode(input) {
+      var doc = new DOMParser().parseFromString(input, "text/html")
+      return doc?.documentElement?.textContent ?? input
+    },
+
+    getColorByCategory (cat) {
+      const colors = {
+        // "Offenes Programm"      : '#FED118',
+        "Offenes Programm"      : 'blue lighten-4',
+        "Botschaftertreffen"    : 'amber lighten-3',
+        // "Seminar"               : '',
+        "Workshop"              : 'blue-grey lighten-1',
+        "Impulsabend"           : 'orange darken-2',
+        "Keynote"               : 'yellow darken-1',
+        "Leitbild-Abend"        : 'blue-grey lighten-2',
+        "Unternehmerwanderung"  : 'brown lighten-2',
+      }
+      return colors[cat]
+    },
+
+    lowercaseKeys: obj => {
+      return Object.keys(obj).reduce((acc, key) => {
+        acc[key.toLowerCase()] = obj[key]
+        return acc
+      }, {})
+    },
   },
 
   created: function () {
@@ -48,29 +80,51 @@ export default {
       },
     }).then(
       (response) => {
-        let data = response.data;
-        let json = data;
+        let json = response.data;
 
-        this.events = json.map((event) => {
-          event.start = this.mergeDateAndTime(event.Startdatum, event.Startuhrzeit)
-          delete event.Startdatum
-          delete event.Startuhrzeit
+        const events = json.map((event) => {
 
-          event.end = this.mergeDateAndTime(event.Enddatum, event.Enduhrzeit)
-          delete event.Enddatum
-          delete event.Enduhrzeit
+          // Rename Key function
+          event.rename_key = function (o, n) {
+            const tmp = event[o]
+            delete event[o]
+            event[n] = tmp
+          }
 
-          const name = event.Name
-          delete event.Name
-          event.name = `${name}${event.Ort ? ' in ' + event.Ort : ''}`
+          // Lowercase all Keys
+          event = this.lowercaseKeys(event)
 
-          event.color = event.Farbe
-          delete event.Farbe
+          // Renaming
+          event.rename_key('untertitel', 'subtitle')
+          event.rename_key('titel', 'name')
+          event.rename_key('kategorie', 'category')
+          event.rename_key('farbe', 'color')
+          event.rename_key('schlagwörter', 'tags')
 
-          return event;
-        });
+          // Change Dates
+          event.start = this.mergeDateAndTime(event.startdatum, event.startuhrzeit)
+          delete event.startdatum
+          delete event.startuhrzeit
 
-        console.log(this.events);
+          event.end = this.mergeDateAndTime(event.enddatum, event.enduhrzeit)
+          delete event.enddatum
+          delete event.enduhrzeit
+
+          // event.name = `${name}${event.Ort ? ' in ' + event.Ort : ''}`
+          event.name = this.htmlDecode(event.name ? event.name : `${event.untertitel}${event.ort ? ' in ' + event.ort : ''}`)
+
+          event.color = event.color ? event.color : this.getColorByCategory(event.category)
+
+          // Delete Function
+          delete event.rename_key
+
+          // Return event
+          return event
+        }).sort((a, b) => new Date(a.start) - new Date(b.start))
+
+        this.data.events = events
+        this.data.earliest = events?.reduce((a, b) => { return a < b.start ? a : b.start })
+        this.data.categories = events?.map(a => a.category).filter((value, index, array) => array.indexOf(value) === index)
       },
       (error) => {
         console.log(error);

@@ -6,6 +6,8 @@ import router from './router'
 
 Vue.config.productionTip = false
 
+require('@/styles/custom.scss')
+
 new Vue({
   vuetify,
   router,
