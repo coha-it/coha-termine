@@ -76,9 +76,10 @@
     tr th {
       position: relative;
       white-space: nowrap;
-      &:not(:last-child) {
-        border-right: 1px solid #adadad;
-      }
+
+      // &:not(:last-child) {
+      //   border-right: 1px solid #adadad;
+      // }
 
       & > span:last-child {
         font-size: 10px;
