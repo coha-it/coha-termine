@@ -36,7 +36,7 @@ v-container.table-view
 
     // Body/Item Slots
     template(v-slot:item.category="{ item }")
-      v-chip(:color="item.color") {{ item.category }}
+      v-chip(:color="item.color" small) {{ item.category }}
 
     template(v-slot:item.details="{ item }")
       .coha_details_text {{ item.details }}
@@ -166,7 +166,8 @@ export default {
         {
           text: "Weiteres",
           value: "more",
-          groupable: true,
+          groupable: false,
+          sortable: false,
         },
         // {
         //   text: "Details",

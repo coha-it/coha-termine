@@ -15,6 +15,13 @@ v-dialog(v-model="dialog", width="500")
         :href="item.article_url"
         small
       ) Zum Produkt
+      v-spacer
+      //- div {{ item.tags.split(',') }}
+      v-chip(
+        v-for="i in item.tags.split(',')"
+        color="grey"
+        small
+      ) {{ i }}
     v-divider
     v-card-actions
       v-spacer
