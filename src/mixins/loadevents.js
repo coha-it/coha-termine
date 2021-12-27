@@ -114,9 +114,16 @@ export default {
           delete event.enduhrzeit
 
           // event.name = `${name}${event.Ort ? ' in ' + event.Ort : ''}`
-          event.name = this.htmlDecode(event.name ? event.name : `${event.untertitel}${event.ort ? ' in ' + event.ort : ''}`)
+          event.name = event.name ? event.name : `${event.untertitel}${event.ort ? ' in ' + event.ort : ''}`
 
           event.color = event.color ? event.color : this.getColorByCategory(event.category)
+
+          // All strings to html decode
+          Object.keys(event).map((key) => {
+            if(typeof event[key] === 'string') {
+              event[key] = this.htmlDecode(event[key])
+            }
+          });
 
           // Delete Function
           delete event.rename_key

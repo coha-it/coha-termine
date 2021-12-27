@@ -22,7 +22,6 @@
   max-height: calc(90vw + 25vh);
 }
 
-
 .v-calendar-weekly__day-label {
   margin: 2px;
 }
@@ -33,11 +32,62 @@
 }
 
 .v-calendar {
-
-.brown.lighten-4,
-.blue.lighten-4,
-.amber.lighten-3,
+  .brown.lighten-4,
+  .blue.lighten-4,
+  .amber.lighten-3,
   .yellow.darken-1 {
     color: #2d2d2d !important;
+  }
+}
+
+// V-Table
+
+.v-data-table {  
+  tbody tr td {
+    position: relative;
+  }
+
+  .coha_details_text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    font-size: 11px;
+    word-break: break-all;
+    line-height: 1.25;
+    margin: -6px;
+  }
+
+  .v-data-table-header {
+    .v-data-table-header__icon {
+      // position: absolute !important;
+      // left: 20px;
+      // bottom: 0;
+    }
+
+    tr th {
+      position: relative;
+      white-space: nowrap;
+      &:not(:last-child) {
+        border-right: 1px solid #adadad;
+      }
+
+      & > span:last-child {
+        font-size: 10px;
+        background: #c7c7c7;
+        padding: 4px 7px;
+        color: #4c4c4c;
+        border-radius: 7px;
+        text-transform: capitalize;
+        opacity: 0.69;
+        transition: 200ms;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
   }
 }
