@@ -1,9 +1,6 @@
 <template lang="pug">
-v-app
-  Main
-    component(:is="layout")
-      router-view
-  Footer
+component(:is="layout")
+  router-view
 </template>
 
 <script>
