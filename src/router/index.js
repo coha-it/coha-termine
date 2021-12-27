@@ -1,25 +1,39 @@
+// Load Components
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Calendar from '../views/Calendar.vue'
 import Table from '../views/Table.vue'
+
+// Load Layouts
+import Default from '@/layouts/Default'
+import Events from '@/layouts/Events'
+
+// Add Layouts
+Vue.component('default-layout', Default)
+Vue.component('events-layout', Events)
+
+// Use Router
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta: { layout: 'default' }
   },
   {
     path: '/kalender',
     name: 'Calendar',
-    component: Calendar
+    component: Calendar,
+    meta: { layout: 'events' }
   },
   {
     path: '/tabelle',
     name: 'Table',
-    component: Table
+    component: Table,
+    meta: { layout: 'events' }
   },
   // {
   //   path: '/about',
