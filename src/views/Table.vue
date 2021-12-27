@@ -10,6 +10,12 @@ v-container.table-view
     hide-details
   )
 
+  v-select.d-flex.d-sm-none(
+    label="Gruppieren nach:",
+    v-model="groupBy",
+    :items="getGroupable"
+  )
+
   v-data-table.elevation-1(
     :headers="headers",
     :items="events",
@@ -18,7 +24,9 @@ v-container.table-view
     show-group-by,
     :items-per-page="-1",
     :sort-by="['start', 'fat']",
-    :custom-filter="customFilter"
+    :custom-filter="customFilter",
+    :group-by="groupBy"
+    @update:group-by="updateGroupBy"
   )
     // Header Slots
     template(v-slot:header.start="{ header }")
@@ -46,29 +54,26 @@ v-container.table-view
         //-   small
         //-   depressed
         //- ) Details 
-        TableDialog(
-          v-if="item.details"
-          :item="item"
-        )
+        TableDialog(v-if="item.details", :item="item")
 
         v-btn.mt-2(
-          v-if="item.article_url"
-          color="primary"
-          :href="item.article_url"
-          target="_blank"
-          small
+          v-if="item.article_url",
+          color="primary",
+          :href="item.article_url",
+          target="_blank",
+          small,
           depressed
         ) Zum Produkt
 </template>
 
 <script>
-import TableDialog from '@/components/TableDialog'
+import TableDialog from "@/components/TableDialog";
 
 export default {
   name: "Table",
 
   components: {
-    TableDialog
+    TableDialog,
   },
 
   props: {
@@ -82,9 +87,17 @@ export default {
     events() {
       return this.data?.events;
     },
+    getGroupable() {
+      return this.headers
+        .filter((a) => a.groupable !== false)
+        .map((a) => a.value);
+    },
   },
 
   methods: {
+    updateGroupBy (e) {
+      this.groupBy = e
+    },
     formatDate(d) {
       if (d) {
         return new Date(d).toLocaleDateString("de-DE");
@@ -110,6 +123,7 @@ export default {
   data() {
     return {
       search: "",
+      groupBy: null,
       headers: [
         {
           text: "Titel",
@@ -150,10 +164,10 @@ export default {
           divider: true,
         },
         {
-          text: 'Weiteres',
-          value: 'more',
+          text: "Weiteres",
+          value: "more",
           groupable: true,
-        }
+        },
         // {
         //   text: "Details",
         //   value: "details",
