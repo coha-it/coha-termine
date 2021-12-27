@@ -116,7 +116,11 @@ export default {
           // event.name = `${name}${event.Ort ? ' in ' + event.Ort : ''}`
           event.name = event.name ? event.name : `${event.untertitel}${event.ort ? ' in ' + event.ort : ''}`
 
+          // Color
           event.color = event.color ? event.color : this.getColorByCategory(event.category)
+
+          // Split tags
+          // event.tags = event.tags.split(', ')
 
           // All strings to html decode
           Object.keys(event).map((key) => {

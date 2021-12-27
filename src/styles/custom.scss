@@ -31,18 +31,24 @@
   width: 32px;
 }
 
-.v-calendar {
-  .brown.lighten-4,
-  .blue.lighten-4,
-  .amber.lighten-3,
-  .yellow.darken-1 {
-    color: #2d2d2d !important;
-  }
+
+.theme--light.v-chip {
+  color: #fff;
 }
+
+.brown.lighten-4,
+.blue.lighten-4,
+.blue.lighten-4,
+.amber.lighten-3,
+.yellow.darken-1 {
+  color: #2d2d2d !important;
+}
+
+
 
 // V-Table
 
-.v-data-table {  
+.v-data-table {
   tbody tr td {
     position: relative;
   }
