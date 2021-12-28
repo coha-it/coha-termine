@@ -45,6 +45,7 @@ v-container.pa-0(fluid v-if="events")
       @click:date='viewDay'
       @change='updateRange'
       :categories='categories'
+      :anyevents="anyEvents"
     )
       template(v-slot:event="{ event }")
         .pl-1 {{ event.name }}
@@ -79,6 +80,7 @@ export default {
   },
 
   data: () => ({
+    anyEvents: false,
     focus: null,
     today: new Date().toISOString().substr(0, 10),
     // tomorrow: new Date(new Date().getTime() + (24 * 60 * 60 * 1000)).toISOString().substr(0, 10),
@@ -193,6 +195,11 @@ export default {
       // You could load events from an outside source (like database) now that we have the start and end dates on the calendar
       this.start = start;
       this.end = end;
+
+      this.anyEvents = this.events.some(event => 
+        (event.start >= start.date && event.start <= end.date) || 
+        (event.end >= start.date && event.end <= end.date)
+      )
     },
     nth(d) {
       return d > 3 && d < 21

@@ -1,5 +1,3 @@
-// Custom
-
 .coha_calendar_wrapper,
 .coha_calendar_toolbar > div {
   margin: auto;
@@ -20,6 +18,28 @@
   // Weird height fix
   height: clamp(500px, 85vh, 850px);
   max-height: calc(90vw + 25vh);
+
+  .v-calendar {
+    position: relative;
+
+    &:not([anyevents]):after {
+      content: "Keine Events für diesen Zeitraum";
+      pointer-events: none;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      justify-content: center;
+      align-items: center;
+      align-self: center;
+      display: flex;
+      background: #00000021;
+      z-index: 2;
+      backdrop-filter: blur(0.25px);
+      font-weight: 600;
+    }
+  }
 }
 
 .v-calendar-weekly__day-label {
@@ -30,7 +50,6 @@
   height: 32px;
   width: 32px;
 }
-
 
 .theme--light.v-chip {
   color: #fff;
@@ -43,8 +62,6 @@
 .yellow.darken-1 {
   color: #2d2d2d !important;
 }
-
-
 
 // V-Table
 
