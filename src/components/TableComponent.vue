@@ -13,7 +13,7 @@
     label="Gruppieren nach:",
     v-model="groupBy",
     :items="getGroupable",
-    item-text="text"
+    item-text="text",
     item-value="value"
   )
 
@@ -89,16 +89,9 @@ export default {
       return this.data?.events;
     },
     getGroupable() {
-      let groups = []
-      this.headers.forEach(element => {
-        if(element.groupable !== false) {
-          groups.push({
-            value: element.value,
-            text: element.text
-          })
-        }
-      });
-      return groups
+      return this.headers
+        .filter((a) => a.groupable !== false)
+        .map((e) => ({ value: e.value, text: e.text }));
     },
   },
 
