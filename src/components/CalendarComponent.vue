@@ -3,7 +3,7 @@
   Toolbar(
     :earliest="data.earliest"
     :latest="data.latest"
-    :title="title"
+    :title="titleDe"
     :type="type"
     :typeToLabel="typeToLabel"
     @next="next"
@@ -94,7 +94,38 @@ export default {
     categories () {
       return this.data?.categories
     },
-    title() {
+
+    titleDe() {
+      const { start, end } = this;
+      if (!start || !end) {
+        return "";
+      }
+
+      const startMonth = this.monthFormatter(start);
+      const endMonth = this.monthFormatter(end);
+      const suffixMonth = startMonth === endMonth ? "" : endMonth;
+
+      const startYear = start.year;
+      const endYear = end.year;
+      const suffixYear = startYear === endYear ? "" : endYear;
+
+      const startDay = start.day;
+      const endDay = end.day;
+
+      switch (this.type) {
+        case "month":
+          return `${startMonth} ${startYear}`;
+        case "week":
+        case "4day":
+          return `${suffixMonth ? startDay+'.' : startDay} ${suffixMonth} ${suffixYear} - ${endDay}. ${startMonth} ${startYear}`;
+        case "day":
+        case "category":
+          return `${startDay}. ${startMonth} ${startYear}`;
+      }
+      return "";
+    },
+
+    titleEn() {
       const { start, end } = this;
       if (!start || !end) {
         return "";
