@@ -12,7 +12,7 @@
     @changeType="changeType"
     @setFocus="setFocus"
   )
-  .coha_calendar_wrapper.mt-2
+  .coha_calendar_wrapper.mt-2(:anyevents="anyEvents")
     v-calendar(
       ref='calendar'
       v-model='focus'
@@ -29,7 +29,6 @@
       @click:date='viewDay'
       @change='updateRange'
       :categories='categories'
-      :anyevents="anyEvents"
     )
       template(v-slot:event="{ event }")
         .pl-1 {{ event.name }}
