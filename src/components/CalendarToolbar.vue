@@ -8,7 +8,26 @@ v-app-bar.pt-0.coha_calendar_toolbar(flat dense)
     v-icon(small) mdi-chevron-left
   v-btn(fab text small @click="$emit('next')")
     v-icon(small) mdi-chevron-right
-  v-toolbar-title {{ title }}
+
+  v-menu(
+    ref='menu'
+    v-model='menu'
+    :close-on-content-click='false'
+    transition='scale-transition'
+    offset-y
+    min-width='auto'
+  )
+    template(v-slot:activator='{ on, attrs }')
+      v-toolbar-title(v-on='on' v-bind="attrs") {{ title }}
+    v-date-picker(
+      v-model='picker' 
+      :active-picker.sync='activePicker'
+      :min='earliest'
+      :max="latest"
+      @change='save'
+    )
+
+
   v-spacer
   v-icon(v-if="type != 'month'" @click="changeType('month')") mdi-backup-restore
   v-menu(bottom right)
@@ -43,13 +62,40 @@ export default {
     typeToLabel: {
       type: Object,
       required: true,
+    },
+    earliest: {
+      type: String,
+      required: true,
+    },
+    latest: {
+      type: String,
+      required: true
+    }
+  },
+
+  data () {
+    return {
+      menu: false,
+      activePicker: null,
+      picker: null
     }
   },
 
   methods: {
     changeType (type) {
       this.$emit('changeType', type)
-    }
+    },
+    save (date) {
+      this.$refs.menu.save(date)
+      this.$emit('setFocus', date)
+    },
   },
+
+  watch: {
+    menu (val) {
+      val && setTimeout(() => (this.activePicker = 'YEAR'))
+    },
+  },
+
 }
 </script>

@@ -1,6 +1,8 @@
 <template lang="pug">
 .calendar-component
   Toolbar(
+    :earliest="data.earliest"
+    :latest="data.latest"
     :title="title"
     :type="type"
     :typeToLabel="typeToLabel"
@@ -8,6 +10,7 @@
     @prev="prev"
     @today="setToday"
     @changeType="changeType"
+    @setFocus="setFocus"
   )
   .coha_calendar_wrapper.mt-2
     v-calendar(
@@ -142,6 +145,9 @@ export default {
   methods: {
     changeType (type) {
       this.type = type
+    },
+    setFocus (date) {
+      this.focus = date
     },
     focusEarliestOrToday () {
       const earliest = this.data.earliest

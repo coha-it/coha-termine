@@ -8,6 +8,7 @@ export default {
       data: {
         events: [],
         earliest: null,
+        latest: null,
         loaded: false,
       }
     };
@@ -139,9 +140,19 @@ export default {
         }).sort((a, b) => new Date(a.start) - new Date(b.start))
 
         this.data.events = events
-        this.data.earliest = events?.reduce((a, b) => { return a < b.start ? a : b.start })
+
+        // Get Earliest
+        // this.data.earliest = events?.reduce((a, b) => { return a < b.start ? a : b.start })
+        this.data.earliest = this.data.events?.find(Boolean)?.start
+
+        // Get Latest
+        // this.data.latest = events?.reduce((a, b) => { return a > b.start ? a : b.start })
+        this.data.latest = this.data.events[this.data.events?.length-1]?.start
+
         this.data.categories = events?.map(a => a.category).filter((value, index, array) => array.indexOf(value) === index)
         this.data.loaded = this.data.events.length > 0
+
+        console.log(this.data)
       },
       (error) => {
         console.log(error);
