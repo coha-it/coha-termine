@@ -1,9 +1,9 @@
 // Load Components
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import Calendar from '../views/Calendar.vue'
-import Table from '../views/Table.vue'
+import Home from '@/pages/Home.vue'
+import CalendarPage from '@/pages/CalendarPage.vue'
+import TablePage from '@/pages/TablePage.vue'
 
 // Load Layouts
 import Default from '@/layouts/Default'
@@ -21,18 +21,18 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
-    meta: { layout: 'default' }
+    meta: { layout: 'events' }
   },
   {
     path: '/kalender',
     name: 'Calendar',
-    component: Calendar,
+    component: CalendarPage,
     meta: { layout: 'events' }
   },
   {
     path: '/tabelle',
     name: 'Table',
-    component: Table,
+    component: TablePage,
     meta: { layout: 'events' }
   },
   // {
@@ -49,12 +49,12 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import('@/views/Upload.vue')
+    component: () => import('@/pages/Upload.vue')
   },
   {
     path: "/:catchAll(.*)",
     name: 'NotFound',
-    component: () => import('../views/NotFound.vue')
+    component: () => import('@/pages/NotFound.vue')
   },
 ]
 

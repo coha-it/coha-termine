@@ -20,6 +20,7 @@ v-dialog(v-model="dialog", width="500")
       v-chip(
         v-for="i in item.tags.split(',')"
         color="grey"
+        :key="i"
         small
       ) {{ i }}
     v-divider

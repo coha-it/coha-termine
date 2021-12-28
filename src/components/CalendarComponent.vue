@@ -1,5 +1,5 @@
 <template lang="pug">
-v-container.pa-0(fluid v-if="events")
+.calendar-component
   v-app-bar.pt-0.coha_calendar_toolbar(flat dense)
     v-btn.mr-4(
       outlined
@@ -70,7 +70,7 @@ v-container.pa-0(fluid v-if="events")
 <script>
 export default {
 
-  name: 'Calendar',
+  name: 'CalendarComponent',
 
   props: {
     data: {

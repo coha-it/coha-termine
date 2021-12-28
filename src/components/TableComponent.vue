@@ -1,7 +1,6 @@
 <template lang="pug">
-v-container.table-view
+.table-component
   h1 Tabelle:
-
   v-text-field(
     v-model="search",
     append-icon="mdi-magnify",
@@ -70,7 +69,7 @@ v-container.table-view
 import TableDialog from "@/components/TableDialog";
 
 export default {
-  name: "Table",
+  name: "TableComponent",
 
   components: {
     TableDialog,
@@ -184,5 +183,5 @@ export default {
       ],
     };
   },
-};
+}
 </script>
