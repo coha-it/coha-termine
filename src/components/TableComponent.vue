@@ -2,11 +2,11 @@
 .table-component
   h1 Tabelle:
   v-text-field(
-    v-model="search",
-    append-icon="mdi-magnify",
-    label="Search",
-    single-line,
-    hide-details
+    v-model="search"
+    append-icon="mdi-magnify"
+    label="Suche"
+    placeholder="Suchbegriff eingeben..."
+    single-line
   )
 
   v-select.d-flex.d-sm-none(
