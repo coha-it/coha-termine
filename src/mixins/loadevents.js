@@ -122,6 +122,8 @@ export default {
           // Split tags
           // event.tags = event.tags.split(', ')
 
+          // event.organizer = event.organizer?.split(', ')
+
           // All strings to html decode
           Object.keys(event).map((key) => {
             if(typeof event[key] === 'string') {
