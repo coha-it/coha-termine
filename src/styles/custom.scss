@@ -12,6 +12,41 @@
   backdrop-filter: blur(2px);
   background-color: rgb(255 255 255 / 73%) !important;
   border-bottom: 1px solid rgb(0 0 0 / 13%) !important;
+
+  @media screen and (max-width: 550px) {
+    .v-toolbar__content {
+      margin: 0 auto;
+      width: 100%;
+      padding: 0 2vw;
+  
+      .v-btn {
+        padding: 11px 5px;
+        font-size: 11px;
+        height: 20px;
+        width: auto;
+        min-width: auto;
+        margin: 0 !important;
+  
+        &.v-btn--fab {
+          height: 25px;
+          width: 25px;
+        }
+  
+        .v-icon--right {
+          margin-left: 0;
+          margin-right: -6px;
+        }
+      }
+  
+      .v-toolbar__title {
+        font-size: 16px;
+        width: auto;
+        text-overflow: unset;
+        white-space: normal;
+        line-height: 1.25;
+      }
+    } 
+  }
 }
 
 .coha_calendar_wrapper {

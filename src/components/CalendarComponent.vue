@@ -119,6 +119,7 @@ export default {
         case "4day":
           return `${startMonth} ${startDay} ${startYear} - ${suffixMonth} ${endDay} ${suffixYear}`;
         case "day":
+        case "category":
           return `${startMonth} ${startDay} ${startYear}`;
       }
       return "";
