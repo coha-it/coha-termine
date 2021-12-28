@@ -223,9 +223,9 @@ export default {
       this.start = start;
       this.end = end;
 
-      this.anyEvents = this.events.some(event => 
-        (event.start >= start.date && event.start <= end.date) || 
-        (event.end >= start.date && event.end <= end.date)
+      this.anyEvents = this.events.some(e => 
+        (start.date <= e.start.split(' ')[0]  && end.date >= e.start.split(' ')[0]) || 
+        (start.date <= e.end                  && end.date >= e.end)
       )
     },
     nth(d) {
