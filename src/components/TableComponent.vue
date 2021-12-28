@@ -28,6 +28,7 @@
     :custom-filter="customFilter",
     :group-by="groupBy",
     @update:group-by="updateGroupBy"
+    :item-class="getItemClass"
   )
     // Header Slots
     template(v-slot:header.start="{ header }")
@@ -53,6 +54,7 @@
 
     template(v-slot:item.end="{ item }")
       | {{ formatDate(item.end) }}
+      .expiring_status(:class="getExpiringStatus(item)")
 
     template(v-slot:item.more="{ item }")
       .my-2
@@ -102,11 +104,32 @@ export default {
   },
 
   methods: {
+
+    getItemClass(item) {
+      return this.getExpiringStatus(item)
+    },
+
+    getExpiringStatus (item) {
+      let now = new Date()
+      let start = new Date(item.start)
+      let end = new Date(item.end)
+
+      switch(true) {
+        case start > now:
+          return 'pending'
+
+        case start <= now && (!item.end || end >= now):
+          return 'running'
+        
+        default:
+          return 'expired'
+      }
+    },
     daysLeft (d) {
       const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
       const daysLeft = new Date(d)
       const today = new Date()
-      const diffDays = Math.round(Math.abs((daysLeft - today) / oneDay));
+      const diffDays = Math.round((daysLeft - today) / oneDay);
       if (diffDays > 0 && diffDays < 100) {
         return diffDays
       }

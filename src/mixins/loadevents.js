@@ -143,7 +143,8 @@ export default {
 
         // Get Earliest
         // this.data.earliest = events?.reduce((a, b) => { return a < b.start ? a : b.start })
-        this.data.earliest = this.data.events?.find(Boolean)?.start
+        // this.data.earliest = this.data.events?.find(Boolean)?.start
+        this.data.earliest = this.data.events.find(a => new Date(a.start) > new Date() )?.start
 
         // Get Latest
         // this.data.latest = events?.reduce((a, b) => { return a > b.start ? a : b.start })
