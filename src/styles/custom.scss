@@ -23,7 +23,7 @@
     position: relative;
 
     &:not([anyevents]):after {
-      content: "Keine Events für diesen Zeitraum";
+      content: "Keine Termine für diesen Zeitraum";
       pointer-events: none;
       position: absolute;
       left: 0;

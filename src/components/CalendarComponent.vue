@@ -1,33 +1,14 @@
 <template lang="pug">
 .calendar-component
-  v-app-bar.pt-0.coha_calendar_toolbar(flat dense)
-    v-btn.mr-4(
-      outlined
-      @click='setToday'
-    ) Heute 
-    v-btn(fab text small @click='prev')
-      v-icon(small) mdi-chevron-left
-    v-btn(fab text small @click='next')
-      v-icon(small) mdi-chevron-right
-    v-toolbar-title {{ title }}
-    v-spacer
-    v-icon(v-if="type != 'month'" @click="type = 'month'") mdi-backup-restore
-    v-menu(bottom right)
-      template(v-slot:activator='{ on }')
-        v-btn(outlined v-on='on')
-          span {{ typeToLabel[type] }}
-          v-icon(right) mdi-menu-down
-      v-list
-        v-list-item(@click="type = 'month'")
-          v-list-item-title Monat
-        v-list-item(@click="type = 'day'")
-          v-list-item-title Tag
-        v-list-item(@click="type = 'week'")
-          v-list-item-title Woche
-        v-list-item(@click="type = '4day'")
-          v-list-item-title 4 Tage
-        v-list-item(@click="type = 'category'")
-          v-list-item-title Kategorie-Ansicht
+  Toolbar(
+    :title="title"
+    :type="type"
+    :typeToLabel="typeToLabel"
+    @next="next"
+    @prev="prev"
+    @today="setToday"
+    @changeType="changeType"
+  )
   .coha_calendar_wrapper.mt-2
     v-calendar(
       ref='calendar'
@@ -68,9 +49,15 @@
 </template>
 
 <script>
+import Toolbar from '@/components/CalendarToolbar.vue'
+
 export default {
 
   name: 'CalendarComponent',
+
+  components: {
+    Toolbar,
+  },
 
   props: {
     data: {
@@ -153,6 +140,9 @@ export default {
     this.focusEarliestOrToday()
   },
   methods: {
+    changeType (type) {
+      this.type = type
+    },
     focusEarliestOrToday () {
       const earliest = this.data.earliest
       const today = this.today
