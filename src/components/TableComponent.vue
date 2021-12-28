@@ -44,6 +44,12 @@
 
     template(v-slot:item.start="{ item }")
       | {{ formatDate(item.start) }}
+      .days_left(
+        v-if="daysLeft(item.start)"
+        :daysleft="daysLeft(item.start)"
+        :class="{ 'persistent': daysLeft(item.start) < 20}"
+        :style="{ backgroundColor: 'hsl(120deg ' + (100 - daysLeft(item.start) + 10) + '% 16% / 60%)' }"
+      ) {{ daysLeft(item.start) }} Tage bis zum Start
 
     template(v-slot:item.end="{ item }")
       | {{ formatDate(item.end) }}
@@ -96,6 +102,15 @@ export default {
   },
 
   methods: {
+    daysLeft (d) {
+      const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+      const daysLeft = new Date(d)
+      const today = new Date()
+      const diffDays = Math.round(Math.abs((daysLeft - today) / oneDay));
+      if (diffDays > 0 && diffDays < 100) {
+        return diffDays
+      }
+    },
     updateGroupBy(e) {
       this.groupBy = e;
     },
