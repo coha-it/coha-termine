@@ -2,17 +2,19 @@
 .table-component
   h1 Tabelle:
   v-text-field(
-    v-model="search"
-    append-icon="mdi-magnify"
-    label="Suche"
-    placeholder="Suchbegriff eingeben..."
+    v-model="search",
+    append-icon="mdi-magnify",
+    label="Suche",
+    placeholder="Suchbegriff eingeben...",
     single-line
   )
 
   v-select.d-flex.d-sm-none(
     label="Gruppieren nach:",
     v-model="groupBy",
-    :items="getGroupable"
+    :items="getGroupable",
+    item-text="text"
+    item-value="value"
   )
 
   v-data-table.elevation-1(
@@ -24,7 +26,7 @@
     :items-per-page="-1",
     :sort-by="['start', 'fat']",
     :custom-filter="customFilter",
-    :group-by="groupBy"
+    :group-by="groupBy",
     @update:group-by="updateGroupBy"
   )
     // Header Slots
@@ -35,7 +37,7 @@
 
     // Body/Item Slots
     template(v-slot:item.category="{ item }")
-      v-chip(:color="item.color" small) {{ item.category }}
+      v-chip(:color="item.color", small) {{ item.category }}
 
     template(v-slot:item.details="{ item }")
       .coha_details_text {{ item.details }}
@@ -87,15 +89,22 @@ export default {
       return this.data?.events;
     },
     getGroupable() {
-      return this.headers
-        .filter((a) => a.groupable !== false)
-        .map((a) => a.value);
+      let groups = []
+      this.headers.forEach(element => {
+        if(element.groupable !== false) {
+          groups.push({
+            value: element.value,
+            text: element.text
+          })
+        }
+      });
+      return groups
     },
   },
 
   methods: {
-    updateGroupBy (e) {
-      this.groupBy = e
+    updateGroupBy(e) {
+      this.groupBy = e;
     },
     formatDate(d) {
       if (d) {
@@ -183,5 +192,5 @@ export default {
       ],
     };
   },
-}
+};
 </script>
