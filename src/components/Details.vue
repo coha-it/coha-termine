@@ -57,10 +57,10 @@ export default {
   },
 
   computed: {
-    locale () {
-      const lang = this.$vuetify?.lang?.current ?? 'jo'
-      return `${lang}-${lang.toUpperCase()}`
-    },
+    // locale () {
+    //   const lang = this.$vuetify?.lang?.current ?? 'de'
+    //   return `${lang}-${lang.toUpperCase()}`
+    // },
     range: function () {
       const start = this.dateRemoveTime(this.event?.start)
       const end   = this.dateRemoveTime(this.event?.end)
@@ -91,18 +91,8 @@ export default {
   methods: {
     dateRemoveTime: d => d?.split(' ')[0],
     dateTimeString (when) {
-      const locale = this.locale
-      const event = new Date(this.event[when])
-      const date = event.toLocaleDateString(locale)
-      const time = event.toLocaleTimeString(locale)
-
-      console.log(this.event, event)
-
-      return `${date} ${time}`
+      return this.$moment(this.event[when]).format('LLL')
     },
-    dateString (when) {
-      return new Date(this.event[when]).toLocaleDateString("de-DE")
-    }
   }
 }
 </script>
