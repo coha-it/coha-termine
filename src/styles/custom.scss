@@ -227,7 +227,11 @@
 
   // Running Event
   tr.running {
-    font-weight: bold;
+    // font-weight: bold;
+    background-color: #eaffe5;
+    &:hover {
+      background-color: #dcf7d5 !important;
+    }
   }
 
   //
