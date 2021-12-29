@@ -1,57 +1,58 @@
 <template lang="pug">
 .calendar-component
   Toolbar(
-    :earliest="data.earliest"
-    :latest="data.latest"
-    :title="titleDe"
-    :type="type"
-    :typeToLabel="typeToLabel"
-    @next="next"
-    @prev="prev"
-    @today="setToday"
-    @changeType="changeType"
+    :earliest="data.earliest",
+    :latest="data.latest",
+    :title="titleDe",
+    :type="type",
+    :typeToLabel="typeToLabel",
+    @next="next",
+    @prev="prev",
+    @today="setToday",
+    @changeType="changeType",
     @setFocus="setFocus"
   )
   .coha_calendar_wrapper.mt-2(:anyevents="anyEvents")
     v-calendar(
-      ref='calendar'
-      v-model='focus'
-      color='primary'
-      locale='de'
-      :events='events'
-      :event-color='getEventColor'
-      :event-margin-bottom='3'
-      :now='today'
-      :type='type'
-      :weekdays='[1, 2, 3, 4, 5, 6, 0]'
-      @click:event='showEvent'
-      @click:more='viewDay'
-      @click:date='viewDay'
-      @change='updateRange'
-      :categories='categories'
+      ref="calendar",
+      v-model="focus",
+      color="primary",
+      locale="de",
+      :events="events",
+      :event-color="getEventColor",
+      :event-margin-bottom="3",
+      :now="today",
+      :type="type",
+      :weekdays="[1, 2, 3, 4, 5, 6, 0]",
+      @click:event="showEvent",
+      @click:more="viewDay",
+      @click:date="viewDay",
+      @change="updateRange",
+      :categories="categories"
     )
       template(v-slot:event="{ event }")
         .pl-1 {{ event.name }}
     v-menu(
-      v-model='selectedOpen'
-      :close-on-content-click='false'
-      :activator='selectedElement'
+      v-model="selectedOpen",
+      :close-on-content-click="false",
+      :activator="selectedElement",
       offset-x
     )
       Details(
-        :event="selectedEvent"
-        @close="selectedOpen = false"
-        color='grey lighten-4' min-width='350px' flat
+        :event="selectedEvent",
+        @close="selectedOpen = false",
+        color="grey lighten-4",
+        min-width="350px",
+        flat
       )
 </template>
 
 <script>
-import Toolbar from '@/components/CalendarToolbar.vue'
-import Details from '@/components/Details.vue'
+import Toolbar from "@/components/CalendarToolbar.vue";
+import Details from "@/components/Details.vue";
 
 export default {
-
-  name: 'CalendarComponent',
+  name: "CalendarComponent",
 
   components: {
     Toolbar,
@@ -62,7 +63,7 @@ export default {
     data: {
       type: Object,
       required: true,
-    }
+    },
   },
 
   data: () => ({
@@ -76,7 +77,7 @@ export default {
       week: "Woche",
       day: "Tage",
       "4day": "4 Tage",
-      "category": "Kategorie",
+      category: "Kategorie",
     },
     start: null,
     end: null,
@@ -85,14 +86,14 @@ export default {
     selectedOpen: false,
   }),
   computed: {
-    today () {
-      return this.$moment().format('YYYY-MM-DD')
+    today() {
+      return this.$moment().format("YYYY-MM-DD");
     },
-    events () {
-      return this.data?.events
+    events() {
+      return this.data?.events;
     },
-    categories () {
-      return this.data?.categories
+    categories() {
+      return this.data?.categories;
     },
 
     titleDe() {
@@ -117,7 +118,9 @@ export default {
           return `${startMonth} ${startYear}`;
         case "week":
         case "4day":
-          return `${suffixMonth ? startDay+'.' : startDay} ${suffixMonth} ${suffixYear} - ${endDay}. ${startMonth} ${startYear}`;
+          return `${
+            suffixMonth ? startDay + "." : startDay
+          } ${suffixMonth} ${suffixYear} - ${endDay}. ${startMonth} ${startYear}`;
         case "day":
         case "category":
           return `${startDay}. ${startMonth} ${startYear}`;
@@ -161,37 +164,37 @@ export default {
       });
     },
 
-    prod () {
-      return process?.env?.NODE_ENV === 'production'
+    prod() {
+      return process?.env?.NODE_ENV === "production";
     },
-    dev () {
-      return process?.env?.NODE_ENV === 'development'
+    dev() {
+      return process?.env?.NODE_ENV === "development";
     },
   },
   mounted() {
-    this.$refs.calendar.checkChange()
+    this.$refs.calendar.checkChange();
 
-    this.focusEarliestOrToday()
+    this.focusEarliestOrToday();
   },
   methods: {
-    changeType (type) {
-      this.type = type
+    changeType(type) {
+      this.type = type;
     },
-    setFocus (date) {
-      this.focus = date
+    setFocus(date) {
+      this.focus = date;
     },
-    focusEarliestOrToday () {
-      const earliest = this.data.earliest
-      const today = this.today
-      this.focus = earliest > today ? earliest : today
+    focusEarliestOrToday() {
+      const earliest = this.data.earliest;
+      const today = this.today;
+      this.focus = earliest > today ? earliest : today;
     },
     viewDay({ date }) {
       this.focus = date;
       this.type = "day";
     },
     getEventColor(event) {
-      const color = event?.color
-      return color ? color : 'green'
+      const color = event?.color;
+      return color ? color : "green";
     },
     setToday() {
       this.focus = this.today;
@@ -223,10 +226,25 @@ export default {
       this.start = start;
       this.end = end;
 
-      this.anyEvents = this.events.some(e => 
-        (start.date <= e.start.split(' ')[0]  && end.date >= e.start.split(' ')[0]) || 
-        (start.date <= e.end                  && end.date >= e.end)
-      )
+      const range_start = start.date;
+      const range_end = end.date;
+
+      this.anyEvents = this.events.some((e) => {
+        const event_start = e.start?.split(" ")[0];
+        const event_end = e.end?.split(" ")[0];
+
+        switch (true) {
+          case event_start == range_start:
+          case event_end == range_end:
+          case event_end > range_start && event_start <= range_start:
+          case event_end < range_end && event_start >= range_start:
+          case range_start <= event_start && range_end >= event_start:
+            return true;
+
+          default:
+            return false;
+        }
+      });
     },
     nth(d) {
       return d > 3 && d < 21
