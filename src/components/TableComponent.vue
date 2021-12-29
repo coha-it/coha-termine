@@ -44,7 +44,7 @@
       .coha_details_text {{ item.details }}
 
     template(v-slot:item.start="{ item }")
-      | {{ formatDate(item.start) }}
+      | {{ formatDate(item.start) }} {{ formatTime(item.start) }}
       .days_left(
         v-if="daysLeft(item.start)"
         :daysleft="daysLeft(item.start)"
@@ -53,7 +53,7 @@
       ) {{ daysLeft(item.start) }} Tage bis zum Start
 
     template(v-slot:item.end="{ item }")
-      | {{ formatDate(item.end) }}
+      | {{ formatDate(item.end) }} {{ formatTime(item.start) }}
       .expiring_status(:class="getExpiringStatus(item)")
 
     template(v-slot:item.location="{ item }")
@@ -129,11 +129,10 @@ export default {
           return 'expired'
       }
     },
-    daysLeft (d) {
-      const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
-      const daysLeft = new Date(d)
-      const today = new Date()
-      const diffDays = Math.round((daysLeft - today) / oneDay);
+    daysLeft (date) {
+      const today = this.$moment()
+      const next = this.$moment(date)
+      const diffDays = next.diff(today, 'days')
       if (diffDays > 0 && diffDays < 100) {
         return diffDays
       }
@@ -141,11 +140,19 @@ export default {
     updateGroupBy(e) {
       this.groupBy = e;
     },
-    formatDate(d) {
-      if (d) {
-        return new Date(d).toLocaleDateString("de-DE");
+
+    formatTime (d) {
+      const time = this.$moment(d).format('HH:mm')
+      
+      if(time !== '00:00') {
+        return time
       }
-      return d;
+    },
+
+    formatDate(d) {
+      if(d) {
+        return this.$moment(d).format('l')
+      }
     },
 
     customFilter: (items, search, filter) => {
