@@ -236,8 +236,8 @@ export default {
         switch (true) {
           case event_start == range_start:
           case event_end == range_end:
-          case event_end > range_start && event_start <= range_start:
-          case event_end < range_end && event_start >= range_start:
+          case event_end >= range_start && event_start <= range_start:
+          case event_end <= range_end && event_start >= range_start:
           case event_start >= range_start && event_start <= range_end:
             return true;
 
