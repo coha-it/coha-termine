@@ -1,38 +1,36 @@
 <template lang="pug">
-v-app-bar.pt-0.coha_calendar_toolbar(flat dense)
-  v-btn.mr-4(
-    outlined
-    @click="$emit('today')"
-  ) Heute 
-  v-btn(fab text small @click="$emit('prev')")
+v-app-bar.pt-0.coha_calendar_toolbar(flat, dense)
+  v-btn.mr-4(outlined, @click="$emit('today')") Heute
+  v-btn(fab, text, small, @click="$emit('prev')")
     v-icon(small) mdi-chevron-left
-  v-btn(fab text small @click="$emit('next')")
+  v-btn(fab, text, small, @click="$emit('next')")
     v-icon(small) mdi-chevron-right
 
   v-menu(
-    ref='menu'
-    v-model='menu'
-    :close-on-content-click='false'
-    transition='scale-transition'
-    offset-y
-    min-width='auto'
+    ref="menu",
+    v-model="menu",
+    :close-on-content-click="false",
+    transition="scale-transition",
+    offset-y,
+    min-width="auto"
   )
-    template(v-slot:activator='{ on, attrs }')
-      v-toolbar-title(v-on='on' v-bind="attrs") {{ title }}
+    template(v-slot:activator="{ on, attrs }")
+      v-toolbar-title(v-on="on", v-bind="attrs") {{ title }}
     v-date-picker(
-      v-model='picker' 
-      :active-picker.sync='activePicker'
-      :min='earliest'
-      :max="latest"
-      @change='save'
+      v-model="picker",
+      show-adjacent-months,
+      :active-picker.sync="activePicker",
+      :min="earliest",
+      :max="latest",
+      @change="save",
+      :type="datePickerType"
     )
 
-
   v-spacer
-  v-icon(v-if="type != 'month'" @click="changeType('month')") mdi-backup-restore
-  v-menu(bottom right)
-    template(v-slot:activator='{ on }')
-      v-btn(outlined v-on='on')
+  v-icon(v-if="type != 'month'", @click="changeType('month')") mdi-backup-restore
+  v-menu(bottom, right)
+    template(v-slot:activator="{ on }")
+      v-btn(outlined, v-on="on")
         span {{ typeToLabel[type] }}
         v-icon(right) mdi-menu-down
     v-list
@@ -53,7 +51,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: ''
+      default: "",
     },
     type: {
       type: String,
@@ -69,33 +67,38 @@ export default {
     },
     latest: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
 
-  data () {
+  data() {
     return {
       menu: false,
       activePicker: null,
-      picker: null
-    }
+      picker: null,
+    };
+  },
+
+  computed: {
+    datePickerType() {
+      return this.type == "month" ? this.type : "date";
+    },
   },
 
   methods: {
-    changeType (type) {
-      this.$emit('changeType', type)
+    changeType(type) {
+      this.$emit("changeType", type);
     },
-    save (date) {
-      this.$refs.menu.save(date)
-      this.$emit('setFocus', date)
+    save(date) {
+      this.$refs.menu.save(date);
+      this.$emit("setFocus", date);
     },
   },
 
   watch: {
-    menu (val) {
-      val && setTimeout(() => (this.activePicker = 'YEAR'))
+    menu(val) {
+      val && setTimeout(() => (this.activePicker = "YEAR"));
     },
   },
-
-}
+};
 </script>

@@ -1,3 +1,7 @@
+.v-date-picker-years {
+  height: auto !important;
+}
+
 .coha_calendar_wrapper,
 .coha_calendar_toolbar > div {
   margin: auto;
@@ -203,7 +207,6 @@
       filter: grayscale(1);
     }
     &:after {
-
       pointer-events: none;
 
       content: "Abgelaufen";

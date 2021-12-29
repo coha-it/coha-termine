@@ -87,7 +87,7 @@ export default {
   }),
   computed: {
     today() {
-      return this.$moment().format("YYYY-MM-DD");
+      return this.dateString();
     },
     events() {
       return this.data?.events;
@@ -180,8 +180,11 @@ export default {
     changeType(type) {
       this.type = type;
     },
+    dateString(date) {
+      return this.$moment(date).format('YYYY-MM-DD')
+    },
     setFocus(date) {
-      this.focus = date;
+      this.focus = this.dateString(date);
     },
     focusEarliestOrToday() {
       const earliest = this.data.earliest;
