@@ -102,6 +102,8 @@ export default {
           event.rename_key('kategorie', 'category')
           event.rename_key('farbe', 'color')
           event.rename_key('schlagwörter', 'tags')
+          event.rename_key('ort', 'location')
+          event.rename_key('ort_details', 'location_details')
           event.rename_key('veranstalter', 'organizer')
           event.rename_key('artikel_link', 'article_url')
 

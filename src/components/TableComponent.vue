@@ -56,6 +56,10 @@
       | {{ formatDate(item.end) }}
       .expiring_status(:class="getExpiringStatus(item)")
 
+    template(v-slot:item.location="{ item }")
+      | {{ item.location }}
+      .location_details(v-if="item.location_details") ({{ item.location_details }})
+
     template(v-slot:item.more="{ item }")
       .my-2
         //- v-btn.mr-2(
@@ -64,8 +68,8 @@
         //-   depressed
         //- ) Details 
         TableDialog(v-if="item.details", :item="item")
-
-        v-btn.mt-2(
+        v-spacer.my-1.d-none.d-sm-flex
+        v-btn(
           v-if="item.article_url",
           color="primary",
           :href="item.article_url",
@@ -172,7 +176,7 @@ export default {
         },
         {
           text: "Ort",
-          value: "ort",
+          value: "location",
           divider: true,
         },
         {

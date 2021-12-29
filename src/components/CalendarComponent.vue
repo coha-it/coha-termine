@@ -38,20 +38,16 @@
       :activator='selectedElement'
       offset-x
     )
-      v-card(color='grey lighten-4' min-width='350px' flat)
-        v-toolbar(:color='selectedEvent.color' dark)
-          v-toolbar-title(v-html='selectedEvent.name')
-          v-spacer
-          v-btn(icon target='_blank' :href="selectedEvent.article_url")
-            v-icon mdi-calendar
-        v-card-text
-          span(v-html='selectedEvent.details')
-        v-card-actions
-          v-btn(text color='secondary' @click='selectedOpen = false') Schlie&szlig;en
+      Details(
+        :event="selectedEvent"
+        @close="selectedOpen = false"
+        color='grey lighten-4' min-width='350px' flat
+      )
 </template>
 
 <script>
 import Toolbar from '@/components/CalendarToolbar.vue'
+import Details from '@/components/Details.vue'
 
 export default {
 
@@ -59,6 +55,7 @@ export default {
 
   components: {
     Toolbar,
+    Details,
   },
 
   props: {
