@@ -1,5 +1,5 @@
 <template lang="pug">
-v-dialog(v-model="dialog" width="500" scrollable)
+v-dialog(v-model="dialog" width="650" scrollable)
   template(v-slot:activator="{ on, attrs }")
     v-btn.mr-2(v-bind="attrs" v-on="on" small depressed)
       | Details

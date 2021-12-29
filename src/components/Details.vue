@@ -2,47 +2,60 @@
 v-card
   v-toolbar(:color='event.color' dark flat)
     v-toolbar-title(v-html='event.name')
-  v-card-text
-    .text-caption Details
-    .text-body-1(v-html='event.details')
-    v-spacer.my-4
+  v-card-text(style="    max-height: 80vh; overflow-y: scroll")
+    v-row(no-gutters)
+      v-col(cols="12" sm="7" md="7" lg="7" xl="6")
+        .text-caption Details
+        .text-body-1(v-html='event.details')
+        v-spacer.my-4
 
-    .text-caption Ort
-    .text-body-1 {{ event.location }} {{ event.location_details }}
-    v-spacer.my-4
+        .text-caption Ort
+        .text-body-1 {{ event.location }} {{ event.location_details }}
+        v-spacer.my-4
 
-    .text-caption Kategory
-    .text-body-1 {{ event.category }}
-    v-spacer.my-4
+        .text-caption Kategory
+        .text-body-1 {{ event.category }}
+        v-spacer.my-4
 
-    .text-caption Datum
-    .text-body-1(v-if="event.start") Startet am: {{ dateTimeString('start') }}
-    .text-body-1(v-if="event.end && event.end != event.start") Ende: {{ dateTimeString('end') }}
-    v-date-picker(
-      v-model="range" 
-      range 
-      :color="event.color" 
-      readonly 
-      no-title 
-      :min="min"
-      :max="max"
-      full-width
-    )
+        .text-caption Veranstalter
+        .text-body-1 {{ event.organizer }}
+        v-spacer.my-4
 
-    .text-caption Schlagwörter
-    v-chip.mr-2(
-      v-for="i in event.tags.split(',')"
-      color="grey"
-      :key="i"
-      x-small
-    ) \#{{ i }}
+        .text-caption Schlagwörter
+        v-chip.mr-2(
+          v-for="i in event.tags.split(',')"
+          color="grey"
+          :key="i"
+          x-small
+        ) \#{{ i }}
 
+      v-col
+        v-date-picker(
+          v-model="range" 
+          range 
+          :color="event.color" 
+          readonly 
+          no-title 
+          :min="min"
+          :max="max"
+          full-width
+        )
+
+      v-col(cols="12")
+        v-spacer.my-4
+        .text-caption {{ hasDifferentEndDate ? 'Zeitraum' : 'Datum' }}
+        .text-body-1
+          template(v-if="event.start")
+            span.black--text {{ dateTimeString('start') }}
+          template(v-if="hasDifferentEndDate")
+            | &nbsp;bis&nbsp;
+            span.black--text {{ dateTimeString('end') }}
 
   v-divider
   v-card-actions
-    v-btn(v-if="event.article_url" color="primary" text target="_blank" :href="event.article_url") Zum Produkt
-    v-spacer
     v-btn(color="primary" text @click="$emit('close')") Schließen
+    v-spacer
+    v-btn(v-if="event.article_url" color="primary" text target="_blank" :href="event.article_url") Zum Produkt
 </template>
 
 <script>
@@ -86,12 +99,20 @@ export default {
     endDay () {
       return this.dateRemoveTime(this.event.end)
     },
+    hasDifferentEndDate () {
+      const start = this.event.start
+      const end = this.event.end
+      return end && end != start
+    }
   },
   
   methods: {
     dateRemoveTime: d => d?.split(' ')[0],
     dateTimeString (when) {
-      return this.$moment(this.event[when]).format('LLL')
+      const date = this.$moment(this.event[when])
+      const time = date.format('HH:mm:ss')
+
+      return time === '00:00:00' ? date.format('LL') : date.format('LLL')
     },
   }
 }
