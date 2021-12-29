@@ -71,7 +71,6 @@
         v-spacer.my-1.d-none.d-sm-flex
         v-btn(
           v-if="item.article_url",
-          color="primary",
           :href="item.article_url",
           target="_blank",
           small,
