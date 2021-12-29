@@ -69,7 +69,6 @@ export default {
     anyEvents: false,
     focus: null,
     // today: new Date().toISOString().substr(0, 10),
-    today: this.$moment().format('YYYY-MM-DD'),
     // tomorrow: new Date(new Date().getTime() + (24 * 60 * 60 * 1000)).toISOString().substr(0, 10),
     type: "month",
     typeToLabel: {
@@ -86,6 +85,9 @@ export default {
     selectedOpen: false,
   }),
   computed: {
+    today () {
+      return this.$moment().format('YYYY-MM-DD')
+    },
     events () {
       return this.data?.events
     },
