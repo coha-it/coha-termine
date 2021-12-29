@@ -30,7 +30,7 @@ v-app-bar.pt-0.coha_calendar_toolbar(flat, dense)
   v-icon(v-if="type != 'month'", @click="changeType('month')") mdi-backup-restore
   v-menu(bottom, right)
     template(v-slot:activator="{ on }")
-      v-btn(outlined, v-on="on")
+      v-btn.ml-4(outlined, v-on="on")
         span {{ typeToLabel[type] }}
         v-icon(right) mdi-menu-down
     v-list
