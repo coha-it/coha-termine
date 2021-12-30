@@ -34,6 +34,8 @@ v-app-bar.pt-0.coha_calendar_toolbar(flat, dense)
         span {{ typeToLabel[type] }}
         v-icon(right) mdi-menu-down
     v-list
+      v-list-item(@click="changeType('year')")
+        v-list-item-title Jahr
       v-list-item(@click="changeType('month')")
         v-list-item-title Monat
       v-list-item(@click="changeType('day')")
@@ -44,8 +46,6 @@ v-app-bar.pt-0.coha_calendar_toolbar(flat, dense)
         v-list-item-title 4 Tage
       v-list-item(@click="changeType('category')")
         v-list-item-title Kategorie-Ansicht
-      v-list-item(@click="changeType('year')")
-        v-list-item-title Jahr
 </template>
 
 <script>
