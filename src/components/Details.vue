@@ -2,7 +2,7 @@
 v-card
   v-toolbar(:color='event.color' dark flat)
     v-toolbar-title(v-html='event.name')
-  v-card-text(style="    max-height: 80vh; overflow-y: scroll")
+  v-card-text(style="max-height: 80vh; overflow-y: scroll")
     v-row(no-gutters)
       v-col(cols="12" sm="7" md="7" lg="7" xl="6")
         .text-caption Details
@@ -31,14 +31,16 @@ v-card
 
       v-col
         v-date-picker(
-          v-model="range" 
-          range 
-          :color="event.color" 
-          readonly 
-          no-title 
+          v-model="range"
           :min="min"
           :max="max"
+          :color="event.color" 
+          no-title 
+          range 
           full-width
+          readonly
+          show-adjacent-months
+          :reactive="true"
         )
 
       v-col(cols="12")
@@ -69,6 +71,12 @@ export default {
     },
   },
 
+  // data () {
+  //   return {
+      
+  //   }
+  // },
+
   computed: {
     // locale () {
     //   const lang = this.$vuetify?.lang?.current ?? 'de'
@@ -77,7 +85,8 @@ export default {
     range: function () {
       const start = this.dateRemoveTime(this.event?.start)
       const end   = this.dateRemoveTime(this.event?.end)
-      return [start, end ? end : start]
+      const range = [start, end ? end : start]
+      return range
     },
     min: function () {
       return this.dateRemoveTime(this.event.start)
@@ -85,8 +94,6 @@ export default {
     max: function () {
       const start = this.dateRemoveTime(this.event.start)
       const end = this.dateRemoveTime(this.event.end)
-
-      console.log(start,end)
 
       if (end && end != start) {
         return end
@@ -104,6 +111,10 @@ export default {
       const end = this.event.end
       return end && end != start
     }
+  },
+
+  mounted: function() {
+    console.log('mounted')
   },
   
   methods: {

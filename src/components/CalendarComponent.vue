@@ -39,6 +39,7 @@
       offset-x
     )
       Details(
+        v-if="selectedOpen"
         :event="selectedEvent",
         @close="selectedOpen = false",
         color="grey lighten-4",
