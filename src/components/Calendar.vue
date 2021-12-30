@@ -13,7 +13,7 @@
     @setFocus="setFocus"
   )
 
-  .coha_calendar_wrapper.mt-2.year(v-show="typeIsYear" anyevents)
+  .coha_calendar_wrapper.mt-2.year(v-if="typeIsYear" anyevents)
     Year(
       v-if="focus"
       :focus="focus"
