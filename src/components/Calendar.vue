@@ -53,7 +53,7 @@ import Toolbar from "@/components/CalendarToolbar.vue";
 import Details from "@/components/Details.vue";
 
 export default {
-  name: "CalendarComponent",
+  name: "Calendar",
 
   components: {
     Toolbar,

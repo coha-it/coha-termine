@@ -1,20 +1,20 @@
 <template lang="pug">
 .home
-  CalendarComponent(:data="data")
+  Calendar(:data="data")
   v-container
-    TableComponent(:data="data")
+    Table(:data="data")
 </template>
 
 <script>
-import TableComponent from '@/components/TableComponent.vue'
-import CalendarComponent from '@/components/CalendarComponent.vue'
+import Table from '@/components/Table.vue'
+import Calendar from '@/components/Calendar.vue'
 
 export default {
   name: 'Home',
 
   components: {
-    TableComponent,
-    CalendarComponent,
+    Table,
+    Calendar,
   },
 
   props: {

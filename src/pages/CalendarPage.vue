@@ -1,10 +1,10 @@
 <template lang="pug">
 v-container.pa-0(fluid)
-  CalendarComponent(:data="data")
+  Calendar(:data="data")
 </template>
 
 <script>
-import CalendarComponent from '@/components/CalendarComponent.vue'
+import Calendar from '@/components/Calendar.vue'
 export default {
 
   name: 'CalendarPage',
@@ -17,7 +17,7 @@ export default {
   },
 
   components: {
-    CalendarComponent
+    Calendar,
   },
 }
 </script>

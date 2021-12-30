@@ -1,16 +1,16 @@
 <template lang="pug">
 v-container.table-view
-  TableComponent(:data="data")
+  Table(:data="data")
 </template>
 
 <script>
-import TableComponent from "@/components/TableComponent";
+import Table from "@/components/Table";
 
 export default {
   name: "TablePage",
 
   components: {
-    TableComponent,
+    Table,
   },
 
   props: {

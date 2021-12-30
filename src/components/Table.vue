@@ -82,7 +82,7 @@
 import TableDialog from "@/components/TableDialog";
 
 export default {
-  name: "TableComponent",
+  name: "Table",
 
   components: {
     TableDialog,
