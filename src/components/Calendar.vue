@@ -18,6 +18,8 @@
       v-if="focus"
       :focus="focus"
       :events="events"
+      @setFocus="setFocus"
+      @changeType="changeType"
     )
 
   .coha_calendar_wrapper.mt-2(v-show="!typeIsYear" :anyevents="anyEvents")
@@ -82,7 +84,7 @@ export default {
     focus: null,
     // today: new Date().toISOString().substr(0, 10),
     // tomorrow: new Date(new Date().getTime() + (24 * 60 * 60 * 1000)).toISOString().substr(0, 10),
-    type: "year", // TODO Change to month!
+    type: "month", // TODO Change to month!
     typeToLabel: {
       month: "Monat",
       week: "Woche",
