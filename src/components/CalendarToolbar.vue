@@ -34,18 +34,13 @@ v-app-bar.pt-0.coha_calendar_toolbar(flat, dense)
         span {{ typeToLabel[type] }}
         v-icon(right) mdi-menu-down
     v-list
-      v-list-item(@click="changeType('year')")
-        v-list-item-title Jahr
-      v-list-item(@click="changeType('month')")
-        v-list-item-title Monat
-      v-list-item(@click="changeType('day')")
-        v-list-item-title Tag
-      v-list-item(@click="changeType('week')")
-        v-list-item-title Woche
-      v-list-item(@click="changeType('4day')")
-        v-list-item-title 4 Tage
-      v-list-item(@click="changeType('category')")
-        v-list-item-title Kategorie-Ansicht
+      v-list-item-group(color="primary")
+        v-list-item(
+          v-for="(element, key) in types",
+          :key="key",
+          @click="changeType(key)"
+        )
+          v-list-item-title {{ element.text }}
 </template>
 
 <script>
@@ -78,6 +73,26 @@ export default {
       menu: false,
       activePicker: null,
       picker: null,
+      types: {
+        year: {
+          text: "Jahr",
+        },
+        month: {
+          text: "Monat",
+        },
+        day: {
+          text: "Tag",
+        },
+        "4day": {
+          text: "4 Tage",
+        },
+        week: {
+          text: "Woche",
+        },
+        category: {
+          text: "Kategorie-Ansicht",
+        },
+      },
     };
   },
 
