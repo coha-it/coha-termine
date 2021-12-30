@@ -44,6 +44,8 @@ v-app-bar.pt-0.coha_calendar_toolbar(flat, dense)
         v-list-item-title 4 Tage
       v-list-item(@click="changeType('category')")
         v-list-item-title Kategorie-Ansicht
+      v-list-item(@click="changeType('year')")
+        v-list-item-title Jahr
 </template>
 
 <script>

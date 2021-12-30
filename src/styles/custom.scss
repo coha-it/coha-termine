@@ -59,6 +59,11 @@
   max-height: calc(90vw + 25vh);
   position: relative;
 
+  &.year {
+    height: auto;
+    max-height: auto;
+  }
+
   .v-calendar {
     // position: relative;
   }
@@ -247,5 +252,24 @@
   .location_details {
     font-size: 0.85em;
     color: #505050;
+  }
+}
+
+// Year Calendar
+.year_calendar {
+  .v-date-picker-header {
+    padding: 0;
+    font-size: 12px;
+
+    .v-date-picker-header__value {
+      pointer-events: none;
+      button {
+        font-weight: normal;
+        color: #6a6161 !important;
+      }
+    }
+    .v-btn {
+      display: none;
+    }
   }
 }

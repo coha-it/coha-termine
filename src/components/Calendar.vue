@@ -12,7 +12,15 @@
     @changeType="changeType",
     @setFocus="setFocus"
   )
-  .coha_calendar_wrapper.mt-2(:anyevents="anyEvents")
+
+  .coha_calendar_wrapper.mt-2.year(v-show="typeIsYear" anyevents)
+    Year(
+      v-if="focus"
+      :focus="focus"
+      :events="events"
+    )
+
+  .coha_calendar_wrapper.mt-2(v-show="!typeIsYear" :anyevents="anyEvents")
     v-calendar(
       ref="calendar",
       v-model="focus",
@@ -22,7 +30,7 @@
       :event-color="getEventColor",
       :event-margin-bottom="3",
       :now="today",
-      :type="type",
+      :type="getType()",
       :weekdays="[1, 2, 3, 4, 5, 6, 0]",
       @click:event="showEvent",
       @click:more="viewDay",
@@ -51,6 +59,7 @@
 <script>
 import Toolbar from "@/components/CalendarToolbar.vue";
 import Details from "@/components/Details.vue";
+import Year from "@/components/Year.vue";
 
 export default {
   name: "Calendar",
@@ -58,6 +67,7 @@ export default {
   components: {
     Toolbar,
     Details,
+    Year,
   },
 
   props: {
@@ -72,13 +82,14 @@ export default {
     focus: null,
     // today: new Date().toISOString().substr(0, 10),
     // tomorrow: new Date(new Date().getTime() + (24 * 60 * 60 * 1000)).toISOString().substr(0, 10),
-    type: "month",
+    type: "year", // TODO Change to month!
     typeToLabel: {
       month: "Monat",
       week: "Woche",
       day: "Tage",
       "4day": "4 Tage",
       category: "Kategorie",
+      year: "Jahr"
     },
     start: null,
     end: null,
@@ -116,15 +127,17 @@ export default {
 
       switch (this.type) {
         case "month":
-          return `${startMonth} ${startYear}`;
+          return `${startMonth} ${startYear}`
         case "week":
         case "4day":
           return `${
             suffixMonth ? startDay + "." : startDay
-          } ${suffixMonth} ${suffixYear} - ${endDay}. ${startMonth} ${startYear}`;
+          } ${suffixMonth} ${suffixYear} - ${endDay}. ${startMonth} ${startYear}`
         case "day":
         case "category":
-          return `${startDay}. ${startMonth} ${startYear}`;
+          return `${startDay}. ${startMonth} ${startYear}`
+        case "year":
+          return `${startYear}`
       }
       return "";
     },
@@ -159,10 +172,18 @@ export default {
       return "";
     },
     monthFormatter() {
-      return this.$refs.calendar.getFormatter({
-        timeZone: "UTC",
-        month: "long",
-      });
+      if(this.$refs.calendar) {
+        return this.$refs.calendar.getFormatter({
+          timeZone: "UTC",
+          month: "long",
+        })
+      } else {
+        return (e) => e
+      }
+    },
+
+    typeIsYear() {
+      return this.type == 'year'
     },
 
     prod() {
@@ -172,12 +193,20 @@ export default {
       return process?.env?.NODE_ENV === "development";
     },
   },
+
   mounted() {
     this.$refs.calendar.checkChange();
-
     this.focusEarliestOrToday();
   },
+
   methods: {
+    getType() {
+      if(this.typeIsYear) {
+        return 'month'
+      } else {
+        return this.type
+      }
+    },
     changeType(type) {
       this.type = type;
     },
@@ -204,10 +233,18 @@ export default {
       this.focus = this.today;
     },
     prev() {
-      this.$refs.calendar.prev();
+      if (this.typeIsYear) {
+        this.$refs.calendar.prev(12);
+      } else {
+        this.$refs.calendar.prev();
+      }
     },
     next() {
-      this.$refs.calendar.next();
+      if (this.typeIsYear) {
+        this.$refs.calendar.next(12);
+      } else {
+        this.$refs.calendar.next();
+      }
     },
     showEvent({ nativeEvent, event }) {
       const open = () => {
@@ -248,7 +285,7 @@ export default {
           default:
             return false;
         }
-      });
+      })
     },
     nth(d) {
       return d > 3 && d < 21
