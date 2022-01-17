@@ -125,7 +125,10 @@ export default {
 
         case hoursBetween > 0 && hoursBetween < 24  && (!item.end || end >= now):
           return 'running'
-        
+
+        case hoursBetween > 24 * 14:
+          return 'hidden'
+
         default:
           return 'expired'
       }

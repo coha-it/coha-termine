@@ -204,6 +204,11 @@
     }
   }
 
+  // Hidden
+  tr.hidden {
+    display: none;
+  }
+
   // Expired
   tr.expired {
     position: relative;
