@@ -121,7 +121,7 @@ export default {
         case start > now:
           return 'pending'
 
-        case start <= now && (!item.end || end >= now):
+        case start == now && (!item.end || end >= now):
           return 'running'
         
         default:
