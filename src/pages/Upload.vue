@@ -32,28 +32,41 @@
             autofocus
           )
       v-spacer
-      v-row
-        v-col(cols='12' xs='12' sm='8' md='6')
-          | Event-Datei auswählen & hochladen
-          br
-          br
-          v-file-input(
-            v-model="file"
-            accept=".xml"
-            outlined
-            label="XML-Datei auswählen"
-            show-size
-            prepend-icon="mdi-file-document-outline"
-          )
-          v-spacer
+
       v-row
         v-col
-          v-btn(
-            color="primary"
-            depressed
-            :disabled="!valid || pin.length < 3 || !file"
-            type="submit"
-          ) Hochladen
+          | Dateityp auswählen
+          v-radio-group(v-model="type")
+            v-radio(
+              v-for="type in types"
+              :key="type"
+              :label="`${typeLabel(type)}`"
+              :value="type"
+            )
+
+      template(v-if="type")
+        v-row
+          v-col(cols='12' xs='12' sm='8' md='6')
+            | Event-Datei auswählen & hochladen
+            br
+            br
+            v-file-input(
+              v-model="file"
+              :accept="`.${type}`"
+              outlined
+              :label="`${typeLabel()} Datei auswählen`"
+              show-size
+              prepend-icon="mdi-file-document-outline"
+            )
+            v-spacer
+        v-row
+          v-col
+            v-btn(
+              color="primary"
+              depressed
+              :disabled="!valid || pin.length < 3 || !file"
+              type="submit"
+            ) Hochladen
 </template>
 
 <script>
@@ -69,11 +82,28 @@ export default {
     snackbar: {}
   }),
 
+  computed: {
+    type: {
+      set (type) {
+        this.$router.push({ params: { type }})
+      },
+      get () {
+        return this.$route.params.type
+      }
+    },
+    types: () => ['xml', 'csv']
+  },
+
   mounted () {
     this.resetMessage()
   },
 
   methods: {
+
+    typeLabel (label = this.type) {
+      return label?.toUpperCase()
+    },
+
     resetMessage () {
       this.snackbar = {
         active: false,
