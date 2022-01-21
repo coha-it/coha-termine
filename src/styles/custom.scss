@@ -204,6 +204,11 @@
     }
   }
 
+  // Hidden
+  tr.hidden {
+    display: none;
+  }
+
   // Expired
   tr.expired {
     position: relative;
@@ -214,7 +219,7 @@
     &:after {
       pointer-events: none;
 
-      content: "Abgelaufen";
+      content: "Vorbei";
       background: rgba(0, 0, 0, 0.31);
       width: 100%;
       height: 100%;

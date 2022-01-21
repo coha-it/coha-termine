@@ -113,17 +113,22 @@ export default {
     },
 
     getExpiringStatus (item) {
-      let now = new Date()
-      let start = new Date(item.start)
-      let end = new Date(item.end)
+      let now = this.$moment()
+      let start = this.$moment(item.start)
+      let end = this.$moment(item.end)
+
+      const hoursBetween = this.$moment.duration(now.diff(start)).asHours()
 
       switch(true) {
         case start > now:
           return 'pending'
 
-        case start <= now && (!item.end || end >= now):
+        case hoursBetween > 0 && hoursBetween < 24  && (!item.end || end >= now):
           return 'running'
-        
+
+        case hoursBetween > 24 * 14:
+          return 'hidden'
+
         default:
           return 'expired'
       }
