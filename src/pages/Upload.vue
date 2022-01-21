@@ -128,8 +128,9 @@ export default {
 
     submit() {
       let formData = new FormData();
-      formData.append("file", this.file);
-      formData.append("pin", this.pin);
+      formData.append('file', this.file);
+      formData.append('type', this.type);
+      formData.append('pin', this.pin);
       this.resetMessage()
 
       axios({
