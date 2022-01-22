@@ -64,7 +64,7 @@
             v-btn(
               color="primary"
               depressed
-              :disabled="!valid || pin.length < 3 || !file"
+              :disabled="disabled"
               type="submit"
             ) Hochladen
 </template>
@@ -83,6 +83,20 @@ export default {
   }),
 
   computed: {
+
+    dev: function () {
+      const mode = process?.env?.NODE_ENV
+      return mode === 'development' || mode === 'local'
+    },
+
+    disabled: function () {
+      return !this.enabled
+    },
+
+    enabled: function () {
+      return (this.valid && this.pin.length > 2 && this.file) || this.dev
+    },
+
     type: {
       set (type) {
         this.$router.push({ params: { type }})
