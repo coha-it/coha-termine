@@ -32,16 +32,7 @@ export default {
     // },
 
     mergeDateAndTime(date, time) {
-      if (date) {
-        const d = date.split('T')[0]
-        if (date && time) {
-          const t = time.split('T')[1].split('.')[0]
-          return `${d} ${t}`
-        } else {
-          return `${d}`
-        }
-      }
-      return null
+      return this.$moment(`${date} ${time}`, 'DD.MM.YYYY HH:mm:ss')
     },
 
     htmlDecode(input) {
@@ -94,27 +85,29 @@ export default {
           }
 
           // Lowercase all Keys
-          event = this.lowercaseKeys(event)
+          // event = this.lowercaseKeys(event)
 
           // Renaming
-          event.rename_key('untertitel', 'subtitle')
-          event.rename_key('titel', 'name')
-          event.rename_key('kategorie', 'category')
-          event.rename_key('farbe', 'color')
-          event.rename_key('schlagwörter', 'tags')
-          event.rename_key('ort', 'location')
-          event.rename_key('ort_details', 'location_details')
-          event.rename_key('veranstalter', 'organizer')
-          event.rename_key('artikel_link', 'article_url')
+          // event.rename_key('untertitel', 'subtitle')
+          // event.rename_key('titel', 'name')
+          // event.rename_key('kategorie', 'category')
+          // event.rename_key('farbe', 'color')
+          // event.rename_key('schlagwörter', 'tags')
+          // event.rename_key('ort', 'location')
+          // event.rename_key('ort_details', 'location_details')
+          // event.rename_key('veranstalter', 'organizer')
+          // event.rename_key('artikel_link', 'article_url')
 
           // Change Dates
-          event.start = this.mergeDateAndTime(event.startdatum, event.startuhrzeit)
-          delete event.startdatum
-          delete event.startuhrzeit
+          event.start = this.mergeDateAndTime(event['Beginnt am'], event['Beginnt um'])
+          delete event['Beginnt am']
+          delete event['Beginnt um']
 
-          event.end = this.mergeDateAndTime(event.enddatum, event.enduhrzeit)
-          delete event.enddatum
-          delete event.enduhrzeit
+          event.end = this.mergeDateAndTime(event['Endet am'], event['Endet um'])
+          delete event['Endet am']
+          delete event['Endet um']
+
+          console.log('the event:', event)
 
           // event.name = `${name}${event.Ort ? ' in ' + event.Ort : ''}`
           event.name = event.name ? event.name : `${event.untertitel}${event.ort ? ' in ' + event.ort : ''}`
@@ -146,7 +139,9 @@ export default {
         // Get Earliest
         // this.data.earliest = events?.reduce((a, b) => { return a < b.start ? a : b.start })
         // this.data.earliest = this.data.events?.find(Boolean)?.start
-        this.data.earliest = this.data.events.find(a => new Date(a.start) > new Date() )?.start
+        // this.data.earliest = this.data.events.find(a => new Date(a.start) > new Date() )?.start
+        this.data.earliest = this.data.events[0].start
+        console.log('JOOO', this.data, this.data.earliest)
 
         // Get Latest
         // this.data.latest = events?.reduce((a, b) => { return a > b.start ? a : b.start })
