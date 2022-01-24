@@ -130,8 +130,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.v-dialog > .v-card > .v-card__text {
-    padding: 16px;
+.v-card {
+  max-width: 750px;
+  & > .v-card__text {
+      padding: 16px;
+  }
 }
 
 .v-date-picker-header {
