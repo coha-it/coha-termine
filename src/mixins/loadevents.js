@@ -68,7 +68,11 @@ export default {
       }, {})
     },
 
-    dateTimeToDayString: str => str?.split('T')[0]
+    dateTimeToDayString: str => str?.split('T')[0],
+
+    dateToGermanNameString (str) {
+      return this.$moment(str).lang("de").format('LLLL')
+    }
   },
 
   created: function () {
@@ -115,15 +119,18 @@ export default {
           // Change Dates
           event.start = this.mergeDateAndTime(event['beginnt_am'], event['beginnt_um'])
           event.start_day = this.dateTimeToDayString(event.start)
+          event.start_german = this.dateToGermanNameString(event.start)
+          // event.start_weekday = this.weekday(event.start)
           delete event['beginnt_am']
           delete event['beginnt_um']
 
           event.end = this.mergeDateAndTime(event['endet_am'], event['endet_um'])
           event.end_day = this.dateTimeToDayString(event.end)
+          event.end_german = this.dateToGermanNameString(event.end)
+          // event.end_weekday = this.weekday(event.end)
           delete event['endet_am']
           delete event['endet_um']
 
-          console.log('the event:', event)
 
           // event.name = `${name}${event.Ort ? ' in ' + event.Ort : ''}`
           event.name = event.name ? event.name : `${event.untertitel}${event.ort ? ' in ' + event.ort : ''}`
