@@ -43,7 +43,8 @@ export default {
     getColorByCategory (cat) {
       const colors = {
         // "Offenes Programm"      : '#FED118',
-        "Offenes Programm"      : 'blue lighten-4',
+        "Ausbildungsstart"      : 'blue lighten-4',
+        "Offenes Programm"      : 'blue lighten-1',
         "Botschaftertreffen"    : 'amber lighten-3',
         // "Seminar"               : '',
         "Workshop"              : 'blue-grey lighten-1',
@@ -51,6 +52,11 @@ export default {
         "Keynote"               : 'yellow darken-1',
         "Leitbild-Abend"        : 'blue-grey lighten-2',
         "Unternehmerwanderung"  : 'brown lighten-2',
+        "Leitbild Abend"        : 'brown darken-1',
+        // DNF / Das Neue Führen
+        "Das Neue Führen"  : 'rgb(242, 192, 40)',
+        "DNF Tag"  : 'rgb(242, 192, 40)',
+        "DNF Intensivseminar"  : 'rgb(242, 192, 40)',
       }
       return colors[cat]
     },
@@ -98,6 +104,7 @@ export default {
           event.rename_key('ort', 'location')
           event.rename_key('veranstalter', 'organizer')
           event.rename_key('artikel_link', 'article_url')
+          event.rename_key('beschreibung', 'details')
           
           // Edit Categories
           event.categories = event.categories.split(';')

@@ -56,9 +56,9 @@
       | {{ formatDate(item.end) }} {{ formatTime(item.start) }}
       .expiring_status(:class="getExpiringStatus(item)")
 
-    template(v-slot:item.location="{ item }")
-      | {{ item.location }}
-      .location_details(v-if="item.location_details") ({{ item.location_details }})
+    //- template(v-slot:item.location="{ item }")
+    //-   | {{ item.location }}
+    //-   .location_details(v-if="item.location_details") ({{ item.location_details }})
 
     template(v-slot:item.more="{ item }")
       .my-2

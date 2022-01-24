@@ -89,12 +89,12 @@ export default {
       return mode === 'development' || mode === 'local'
     },
 
-    disabled: function () {
-      return !this.enabled
-    },
-
     enabled: function () {
       return (this.valid && this.pin.length > 2 && this.file) || this.dev
+    },
+
+    disabled: function () {
+      return !this.enabled
     },
 
     type: {
