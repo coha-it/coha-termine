@@ -13,7 +13,7 @@ v-card
         //- .text-body-1 {{ event.location }} {{ event.location_details }}
         //- v-spacer.my-4
 
-        .text-caption Kategory
+        .text-caption Kategorie
         .text-body-1 {{ event.category }}
         v-spacer.my-4
 
@@ -21,7 +21,7 @@ v-card
         .text-body-1 {{ event.organizer }}
         v-spacer.my-4
 
-        .text-caption Schlagwörter
+        .text-caption Kategorien
         v-chip.mr-2(
           v-for="i in event.categories"
           color="grey"

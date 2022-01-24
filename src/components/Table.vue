@@ -53,7 +53,7 @@
       ) {{ daysLeft(item.start) }} Tage bis zum Start
 
     template(v-slot:item.end="{ item }")
-      | {{ formatDate(item.end) }} {{ formatTime(item.start) }}
+      | {{ formatDate(item.end) }} {{ formatTime(item.end) }}
       .expiring_status(:class="getExpiringStatus(item)")
 
     //- template(v-slot:item.location="{ item }")
@@ -202,11 +202,6 @@ export default {
           groupable: false,
           divider: true,
         },
-        // {
-        //   text: "Schlagwörter",
-        //   value: "tags",
-        //   divider: true,
-        // },
         {
           text: "Kategorie",
           value: "category",

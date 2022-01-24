@@ -100,9 +100,9 @@ export default {
           event.rename_key('betreff', 'name')
           event.rename_key('kategorien', 'categories')
           event.rename_key('farbe', 'color')
-          // event.rename_key('schlagwörter', 'tags')
           event.rename_key('ort', 'location')
           event.rename_key('veranstalter', 'organizer')
+          event.rename_key('erforderliche_teilnehmer', 'organizer')
           event.rename_key('artikel_link', 'article_url')
           event.rename_key('beschreibung', 'details')
           
@@ -127,10 +127,9 @@ export default {
           // Color
           event.color = event.color ? event.color : this.getColorByCategory(event.category)
 
-          // Split tags
-          // event.tags = event.tags.split(', ')
-
-          // event.organizer = event.organizer?.split(', ')
+          // Split organizer
+          // event.organizer = event.organizer?.split(';')
+          event.organizer = event.organizer.replaceAll(';', ' und ')
 
           // All strings to html decode
           Object.keys(event).map((key) => {
