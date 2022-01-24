@@ -9,9 +9,9 @@ v-card
         .text-body-1(v-html='event.details')
         v-spacer.my-4
 
-        .text-caption Ort
-        .text-body-1 {{ event.location }} {{ event.location_details }}
-        v-spacer.my-4
+        //- .text-caption Ort
+        //- .text-body-1 {{ event.location }} {{ event.location_details }}
+        //- v-spacer.my-4
 
         .text-caption Kategory
         .text-body-1 {{ event.category }}
@@ -23,7 +23,7 @@ v-card
 
         .text-caption Schlagwörter
         v-chip.mr-2(
-          v-for="i in event.tags.split(',')"
+          v-for="i in event.categories"
           color="grey"
           :key="i"
           x-small

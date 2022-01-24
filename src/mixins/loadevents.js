@@ -32,7 +32,7 @@ export default {
     // },
 
     mergeDateAndTime(date, time) {
-      return this.$moment(`${date} ${time}`, 'DD.MM.YYYY HH:mm:ss')
+      return this.$moment(`${date} ${time}`, 'DD.MM.YYYY HH:mm:ss').format("YYYY-MM-DD[T]HH:mm:ss")
     },
 
     htmlDecode(input) {
@@ -55,9 +55,9 @@ export default {
       return colors[cat]
     },
 
-    lowercaseKeys: obj => {
+    formatKeys: obj => {
       return Object.keys(obj).reduce((acc, key) => {
-        acc[key.toLowerCase()] = obj[key]
+        acc[key.toLowerCase().replaceAll(/[\s/]/g,'_')] = obj[key]
         return acc
       }, {})
     },
@@ -80,32 +80,37 @@ export default {
           // Rename Key function
           event.rename_key = function (o, n) {
             const tmp = event[o]
-            delete event[o]
-            event[n] = tmp
+            if(tmp) {
+              delete event[o]
+              event[n] = tmp
+            }
           }
 
           // Lowercase all Keys
-          // event = this.lowercaseKeys(event)
+          event = this.formatKeys(event)
 
           // Renaming
-          // event.rename_key('untertitel', 'subtitle')
-          // event.rename_key('titel', 'name')
-          // event.rename_key('kategorie', 'category')
-          // event.rename_key('farbe', 'color')
+          event.rename_key('untertitel', 'subtitle')
+          event.rename_key('betreff', 'name')
+          event.rename_key('kategorien', 'categories')
+          event.rename_key('farbe', 'color')
           // event.rename_key('schlagwörter', 'tags')
-          // event.rename_key('ort', 'location')
-          // event.rename_key('ort_details', 'location_details')
-          // event.rename_key('veranstalter', 'organizer')
-          // event.rename_key('artikel_link', 'article_url')
+          event.rename_key('ort', 'location')
+          event.rename_key('veranstalter', 'organizer')
+          event.rename_key('artikel_link', 'article_url')
+          
+          // Edit Categories
+          event.categories = event.categories.split(';')
+          event.category = event.categories[0]
 
           // Change Dates
-          event.start = this.mergeDateAndTime(event['Beginnt am'], event['Beginnt um'])
-          delete event['Beginnt am']
-          delete event['Beginnt um']
+          event.start = this.mergeDateAndTime(event['beginnt_am'], event['beginnt_um'])
+          delete event['beginnt_am']
+          delete event['beginnt_um']
 
-          event.end = this.mergeDateAndTime(event['Endet am'], event['Endet um'])
-          delete event['Endet am']
-          delete event['Endet um']
+          event.end = this.mergeDateAndTime(event['endet_am'], event['endet_um'])
+          delete event['endet_am']
+          delete event['endet_um']
 
           console.log('the event:', event)
 
@@ -141,7 +146,6 @@ export default {
         // this.data.earliest = this.data.events?.find(Boolean)?.start
         // this.data.earliest = this.data.events.find(a => new Date(a.start) > new Date() )?.start
         this.data.earliest = this.data.events[0].start
-        console.log('JOOO', this.data, this.data.earliest)
 
         // Get Latest
         // this.data.latest = events?.reduce((a, b) => { return a > b.start ? a : b.start })
