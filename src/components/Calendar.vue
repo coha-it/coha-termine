@@ -272,9 +272,9 @@ export default {
       const range_start = start.date;
       const range_end = end.date;
 
-      this.anyEvents = this.events.some((e) => {
-        const event_start = e.start?.split("T")[0];
-        const event_end = e.end?.split("T")[0];
+      this.anyEvents = this.events.some((event) => {
+        const event_start = event?.start_day;
+        const event_end = event?.end_day;
 
         switch (true) {
           case event_start == range_start:

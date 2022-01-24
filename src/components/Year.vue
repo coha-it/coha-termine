@@ -38,10 +38,13 @@ export default {
       this.$emit('changeType', 'day')
     },
     myEventFilter: (event, date) => {
+      const start = event?.start_day
+      const end = event?.end_day
+
       switch (true) {
-        case event.start == date:
-        case event.end == date:
-        case event.start <= date && event.end >= date:
+        case start == date:
+        case end == date:
+        case start <= date && end >= date:
           return 1;
         default:
           return 0;

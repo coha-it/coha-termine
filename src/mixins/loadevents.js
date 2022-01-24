@@ -67,6 +67,8 @@ export default {
         return acc
       }, {})
     },
+
+    dateTimeToDayString: str => str?.split('T')[0]
   },
 
   created: function () {
@@ -112,10 +114,12 @@ export default {
 
           // Change Dates
           event.start = this.mergeDateAndTime(event['beginnt_am'], event['beginnt_um'])
+          event.start_day = this.dateTimeToDayString(event.start)
           delete event['beginnt_am']
           delete event['beginnt_um']
 
           event.end = this.mergeDateAndTime(event['endet_am'], event['endet_um'])
+          event.end_day = this.dateTimeToDayString(event.end)
           delete event['endet_am']
           delete event['endet_um']
 
