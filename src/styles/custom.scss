@@ -64,9 +64,9 @@
     max-height: unset;
   }
 
-  .v-calendar {
+  // .v-calendar {
     // position: relative;
-  }
+  // }
 
   &:after {
     content: "Keine Termine für diesen Zeitraum";
@@ -135,11 +135,11 @@
   }
 
   .v-data-table-header {
-    .v-data-table-header__icon {
+    // .v-data-table-header__icon {
       // position: absolute !important;
       // left: 20px;
       // bottom: 0;
-    }
+    // }
 
     tr th {
       position: relative;
