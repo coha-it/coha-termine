@@ -71,7 +71,7 @@ export default {
     dateTimeToDayString: str => str?.split('T')[0],
 
     dateToGermanNameString (str) {
-      return this.$moment(str).lang("de").format('LLLL')
+      return this.$moment(str).format('LLLL')
     }
   },
 

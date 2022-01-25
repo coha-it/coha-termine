@@ -83,17 +83,17 @@ export default {
     //   return `${lang}-${lang.toUpperCase()}`
     // },
     range: function () {
-      const start = this.dateRemoveTime(this.event?.start)
-      const end   = this.dateRemoveTime(this.event?.end)
+      const start = this.event?.start_day
+      const end   = this.event?.end_day
       const range = [start, end ? end : start]
       return range
     },
     min: function () {
-      return this.dateRemoveTime(this.event.start)
+      return this.event?.start_day
     },
     max: function () {
-      const start = this.dateRemoveTime(this.event.start)
-      const end = this.dateRemoveTime(this.event.end)
+      const start = this.event?.start_day
+      const end = this.event?.end_day
 
       if (end && end != start) {
         return end
@@ -101,10 +101,10 @@ export default {
       return start
     },
     startDay () {
-      return this.dateRemoveTime(this.event.start)
+      return this.event?.start_day
     },
     endDay () {
-      return this.dateRemoveTime(this.event.end)
+      return this.event?.end_day
     },
     hasDifferentEndDate () {
       const start = this.event.start
@@ -118,7 +118,6 @@ export default {
   },
   
   methods: {
-    dateRemoveTime: d => d?.split(' ')[0],
     dateTimeString (when) {
       const date = this.$moment(this.event[when])
       const time = date.format('HH:mm:ss')
