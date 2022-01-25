@@ -113,9 +113,9 @@ export default {
     }
   },
 
-  mounted: function() {
-    console.log('mounted')
-  },
+  // mounted: function() {
+  //   console.log('mounted')
+  // },
   
   methods: {
     dateTimeString (when) {

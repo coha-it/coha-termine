@@ -14,6 +14,13 @@ export default {
     };
   },
 
+  computed: {
+    production: () => process.env.NODE_ENV === 'production',
+    prod: function () { return this.production },
+    development: function () { return !this.production },
+    dev: function () { return this.development },
+  },
+
   methods: {
     /*
     * Convert a "dd.MM.yyyy" string into a Date object
@@ -171,10 +178,12 @@ export default {
         this.data.categories = events?.map(a => a.category).filter((value, index, array) => array.indexOf(value) === index)
         this.data.loaded = this.data.events.length > 0
 
-        console.log(this.data)
+        if(this.dev) {
+          console.log(this.data)
+        }
       },
       (error) => {
-        console.log(error);
+        console.error(error);
       }
     );
   },
